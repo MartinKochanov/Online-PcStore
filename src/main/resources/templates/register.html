@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+<nav th:replace="~{fragments/navbar}"></nav>
+
+
+<section class="vh-100">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">Create an account</h2>
+
+                            <form th:action="@{/register}" th:method="POST"
+                            th:object="${userRegisterDto}">
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                    th:if="${#fields.hasErrors('username')}"
+                                    th:errors="*{username}"></small>
+                                    <input type="text"
+                                           id="username"
+                                           th:field="*{username}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                    />
+                                    <label class="form-label text-light" for="firstName">Username*</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('firstName')}"
+                                           th:errors="*{firstName}"></small>
+                                    <input type="text"
+                                           id="firstName"
+                                           th:field="*{firstName}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                    />
+                                    <label class="form-label text-light" for="firstName">First Name*</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="lastName"
+                                           name="lastName"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                    />
+                                    <label class="form-label text-light" for="firstName">Last Name</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('email')}"
+                                           th:errors="*{email}"></small>
+                                    <input type="email"
+                                           id="email"
+                                           th:field="*{email}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light" />
+                                    <label class="form-label text-light" for="email">Email*</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('password')}"
+                                           th:errors="*{password}"></small>
+                                    <input type="password"
+                                           id="password"
+                                           th:field="*{password}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light" />
+                                    <label class="form-label text-light" for="password">Password*</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('confirmPassword')}"
+                                           th:errors="*{confirmPassword}"></small>
+                                    <input type="password"
+                                           id="confirmPassword"
+                                           th:field="*{confirmPassword}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light" />
+                                    <label class="form-label text-light" for="confirmPassword">Confirm your password*</label>
+                                </div>
+                                <div class="d-flex justify-content-center ">
+                                    <button type="submit"
+                                            class="btn btn-block btn-lg text-light registerGlowButton">Register</button>
+                                </div>
+                                <p class="text-center text-light mt-1 mb-0">Already have an account? <a th:href="@{/login}"
+                                                                                                        class="fw-bold text-light"><u>Login here</u></a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

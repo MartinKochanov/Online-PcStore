@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/PcStore?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML, CSS
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  mvc:
+    hiddenmethod:
+       filter:
+         enabled: true
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: martin.kochanov002@gmail.com
+  password: pzrmeuxphyzwqamr
+  properties:
+    mail:
+      transport:
+        protocol: smtp
+      smtp:
+        auth: true
+        starttls:
+          enable: true

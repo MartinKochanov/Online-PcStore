@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+
+<header th:replace="~{fragments/navbar}"></header>
+<div class="col container-fluid mt-4">
+    <div class="row" id="homeImg">
+        <div class="col col-lg-11 col-md-11 col-sm-11 mt-5 ms-5">
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-4"> Welcome to Gamer Hub!</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-2">Easily assemble your own gaming PC </p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-2">with the help of our professionals</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-5">or find whatever you are searching for!</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-5 pb-5">Everything you need you can found here!</p>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <h1 class=" text-uppercase mt-5 homeHeaders">
+       Gaming Computers
+    </h1>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 mt-5">
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/case.webp"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Cases
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/motherboard.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center fs">
+                            Motherboards
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/CPU.webp" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            CPU
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/cooler.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Coolers
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+    <div class="text-center">
+        <h1 class=" text-uppercase mt-5 homeHeaders">
+            Laptops
+        </h1>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 mt-5">
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/case.webp"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Cases
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/motherboard.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center fs">
+                            Motherboards
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/CPU.webp" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            CPU
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/cooler.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Coolers
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

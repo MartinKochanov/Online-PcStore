@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{/fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="col-12 text-center">
+    <div class="ui-menu-item-wrapper bg-dark align-self-center mt-3 fs-4">
+        <select class="ui-menu-item text-light text-center px-2 py-2 bg-transparent borderGlow" id="type">
+            <option class="ui-menu-item bg-dark" value="CASE">Case</option>
+            <option class="ui-menu-item bg-dark" value="MOTHERBOARD">Motherboard</option>
+            <option class="ui-menu-item bg-dark" value="RAM">RAM</option>
+            <option class="ui-menu-item bg-dark" value="COOLER">Cooler</option>
+            <option class="ui-menu-item bg-dark" value="HDD">HDD</option>
+        </select>
+    </div>
+</div>
+         <!-- TODO Fix this forms-->
+<section class="vh-100 data" id="CASE">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">CASE</h2>
+
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+                            <form th:action="@{/login}" th:method="POST">
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           th:value="${username}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="username">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Blabla</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Login"/>
+                                </div>
+                            </form>
+                            <p class="text-center text-light mt-1 mb-0">Don`t have an account? <a th:href="@{/register}"
+                                                                                                  class="fw-bold text-light"><u>Register
+                                here</u></a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="vh-100 data" id="MOTHERBOARD">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">MOTHERBOARD</h2>
+
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+                            <form th:action="@{/login}" th:method="POST">
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           th:value="${username}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="username">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Login"/>
+                                </div>
+                            </form>
+                            <p class="text-center text-light mt-1 mb-0">Don`t have an account? <a th:href="@{/register}"
+                                                                                                  class="fw-bold text-light"><u>Register
+                                here</u></a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="vh-100 data" id="RAM">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">RAM</h2>
+
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+                            <form th:action="@{/login}" th:method="POST">
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           th:value="${username}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="username">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Login"/>
+                                </div>
+                            </form>
+                            <p class="text-center text-light mt-1 mb-0">Don`t have an account? <a th:href="@{/register}"
+                                                                                                  class="fw-bold text-light"><u>Register
+                                here</u></a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="vh-100 data" id="COOLER">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">COOLER</h2>
+
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+                            <form th:action="@{/login}" th:method="POST">
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           th:value="${username}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="username">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Login"/>
+                                </div>
+                            </form>
+                            <p class="text-center text-light mt-1 mb-0">Don`t have an account? <a th:href="@{/register}"
+                                                                                                  class="fw-bold text-light"><u>Register
+                                here</u></a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="vh-100 data" id="HDD">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">HDD</h2>
+
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+                            <form th:action="@{/login}" th:method="POST">
+                                <div class="form-outline mb-4">
+                                    <input type="text"
+                                           id="username"
+                                           name="username"
+                                           th:value="${username}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="username">Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Login"/>
+                                </div>
+                            </form>
+                            <p class="text-center text-light mt-1 mb-0">Don`t have an account? <a th:href="@{/register}"
+                                                                                                  class="fw-bold text-light"><u>Register
+                                here</u></a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function (){
+        $("#type").on('change', function (){
+            $(".data").hide();
+            $("#" + $(this).val()).fadeIn(700);
+        }).change();
+    });
+</script>
+</body>
+</html>

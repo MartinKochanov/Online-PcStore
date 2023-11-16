@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    background-color: #212529;
+}
+
+#header {
+    width: 100%;
+    background: #F40760
+}
+
+.navbar {
+    padding: 20px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white !important;
+}
+
+.navbar-dark .navbar-toggler {
+    border: 2px solid white;
+}
+
+.nav-item {
+    font-weight: 600;
+}
+
+.nav-link, #logout{
+    color: white !important;
+    letter-spacing: 2px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav-link:hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    color: #bcbebf;
+    border-radius: 5px;
+    transition: all 0.6s ease 0s;
+}
+
+#homeH1 {
+    color: white;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    text-shadow: 1px 1px 2px black, 0 0 25px #589DA5, 0 0 5px #589DA5;
+}
+
+
+.homeHeaders {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px #589DA5, 0 0 5px #589DA5;
+}
+
+#homeImg {
+    background-image: url("/images/homeBg.jpg");
+    background-size: cover;
+    box-shadow: 0px 0px 30px 10px #E22EF3;
+}
+
+p {
+    letter-spacing: 3px;
+    word-spacing: 5px;
+    /*text-shadow: 1px 1px 2px black, 0 0 25px #589DA5, 0 0 5px #589DA5;*/
+}
+
+.cardGlow, .registerGlow, .borderGlow {
+    box-shadow: 0px 0px 30px 10px #E22EF3;
+    transition: all 0.3s;
+    border-radius: 15px;
+}
+
+.cardGlow:hover {
+    transform: scale(1.05);
+}
+
+body > section > div > div > div > div > div > div > form > div.d-flex.justify-content-center > button, #loginBtn{
+    border: 2px solid #be2ef3;
+}
+
+
+
+.registerGlowButton:hover {
+    transform: scale(1.02);
+    background-color: #be2ef3;
+}
+
+.ui-menu-item {
+    background-color: transparent;!important;
+}
+
+
+
+

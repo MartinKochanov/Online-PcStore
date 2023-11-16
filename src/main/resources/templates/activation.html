@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{/fragments/head}">
+
+</head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="row mt-5">
+    <div class="col-12 ">
+        <p th:if="${invalidToken}" class="border-success text-success text-center py-3 fs-4">
+            Your verification token is invalid!
+        </p>
+        <p th:if="${!invalidToken}" class="border-success text-success text-center py-3 fs-4">
+            You have activated your account successfully!
+        </p>
+    </div>
+
+        <div th:if="${!invalidToken}" class="d-flex justify-content-center">
+            <a th:href="@{/login}">
+                <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                       id="loginBtn" value="Login"/>
+            </a>
+        </div>
+
+</div>
+
+</body>
+</html>
