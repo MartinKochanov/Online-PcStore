@@ -5,12 +5,31 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello</title>
+    <title></title>
 </head>
 <body>
-<h1>Hello, <th:block th:text="${username}">Pesho</th:block>!</h1>
-<p> Welcome to Gamer Hub!
 
-Please follow the  <a class="card-link" th:href="@{http://localhost:8080/activate(token=*{token})}">link</a> in order to activate your account.</p>
+<header style="background-color: #292A2D; color: white; text-align: center">
+    <div style="background-color: #292A2D; color: white; text-align: center">
+
+        <h1>Hello,
+            <th:block th:text="${fullName}"></th:block>
+            !
+        </h1>
+        <h1>You`re almost there!</h1>
+        <div>
+            <a th:href="@{http://localhost:8080/activation(token=*{token})}">
+                <input type="submit" class="btn btn-block btn-lg text-light"
+                       id="activationBtn" value="Activate Your Account"
+                       style="margin-top: 20px;
+                        margin-bottom: 20px;
+                        background-color: #F40760 ;
+                        border: none;
+                        padding: 9px;
+                        font-size: 20px;"/>
+            </a>
+        </div>
+    </div>
+</header>
 </body>
 </html>

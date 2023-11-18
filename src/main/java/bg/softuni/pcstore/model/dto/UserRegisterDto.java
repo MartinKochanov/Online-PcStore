@@ -79,4 +79,13 @@ public class UserRegisterDto {
         this.confirmPassword = confirmPassword;
         return this;
     }
+
+    public String getFullName() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName);
+        if (lastName != null || !lastName.isEmpty()){
+            sb.append(" ").append(lastName);
+        }
+        return sb.toString();
+    }
 }

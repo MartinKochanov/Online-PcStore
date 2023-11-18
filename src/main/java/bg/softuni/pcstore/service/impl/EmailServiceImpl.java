@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendActivationEmail(String userEmail, String username, String activationToken) {
+    public void sendActivationEmail(String userEmail, String fullName, String activationToken) {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
@@ -36,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
             mimeMessageHelper.setFrom(myEmail);
             mimeMessageHelper.setReplyTo(myEmail);
             mimeMessageHelper.setSubject("Welcome to Gamer Hub!");
-            mimeMessageHelper.setText(generateRegistrationEmailBody(username, activationToken), true);
+            mimeMessageHelper.setText(generateRegistrationEmailBody(fullName, activationToken), true);
 
             javaMailSender.send(mimeMessageHelper.getMimeMessage());
 
@@ -45,10 +45,10 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    private String generateRegistrationEmailBody(String username, String activationToken) {
+    private String generateRegistrationEmailBody(String fullName, String activationToken) {
 
         Context context = new Context();
-        context.setVariable("username", username);
+        context.setVariable("fullName", fullName);
         context.setVariable("token", activationToken);
 
         return templateEngine.process("email/registration-email", context);

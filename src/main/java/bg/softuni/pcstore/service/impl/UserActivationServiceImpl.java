@@ -29,13 +29,12 @@ public class UserActivationServiceImpl implements UserActivationService {
     @Override
     public void userRegistered(UserRegistrationEvent event) {
         String activationToken = createVerificationToken(event.getUsername());
-        emailService.sendActivationEmail(event.getUserEmail(),event.getUsername(), activationToken);
+        emailService.sendActivationEmail(event.getUserEmail(),event.getFullName(), activationToken);
     }
 
     @Override
     public String createVerificationToken(String username) {
         String token = UUID.randomUUID().toString();
-
         VerificationToken verificationToken = new VerificationToken();
         verificationToken
                 .setToken(token)

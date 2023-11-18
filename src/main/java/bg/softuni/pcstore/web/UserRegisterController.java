@@ -1,15 +1,14 @@
 package bg.softuni.pcstore.web;
 
 import bg.softuni.pcstore.model.dto.UserRegisterDto;
-import bg.softuni.pcstore.model.entity.UserEntity;
-import bg.softuni.pcstore.model.entity.VerificationToken;
-import bg.softuni.pcstore.repository.UserRepository;
-import bg.softuni.pcstore.repository.VerificationTokenRepository;
 import bg.softuni.pcstore.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,13 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserRegisterController {
 
     private final UserService userService;
-    private final VerificationTokenRepository verificationTokenRepository;
-    private final UserRepository userRepository;
 
-    public UserRegisterController(UserService userService, VerificationTokenRepository verificationTokenRepository, UserRepository userRepository) {
+
+    public UserRegisterController(UserService userService) {
         this.userService = userService;
-        this.verificationTokenRepository = verificationTokenRepository;
-        this.userRepository = userRepository;
+
+
     }
 
     @GetMapping("/register")
@@ -49,22 +47,14 @@ public class UserRegisterController {
         return new ModelAndView("success-registration");
     }
 
-    @GetMapping("/activate")
-    public ModelAndView activateAcc(@RequestParam("token") String token) {
-        ModelAndView modelAndView = new ModelAndView("activation");
-        if (token == null) {
-            modelAndView.addObject("invalidToken", true);
-            return modelAndView;
+    @GetMapping("/activation")
+    public ModelAndView activateAccount(@RequestParam("token") String token) {
+        ModelAndView modelAndView = new ModelAndView("/activation");
+        boolean activated = userService.activateAccount(token);
+        if (!activated) {
+            modelAndView.addObject("invalidToken", false);
         }
-        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
-        if (verificationToken == null || token.isEmpty()) {
-            modelAndView.addObject("invalidToken", true);
-            return modelAndView;
-        }
-        UserEntity user = verificationToken.getUser();
-        user.setDisabled(false);
-        userRepository.save(user);
-        modelAndView.addObject("invalidToken", false);
+        modelAndView.addObject("validToken", true);
         return modelAndView;
     }
 

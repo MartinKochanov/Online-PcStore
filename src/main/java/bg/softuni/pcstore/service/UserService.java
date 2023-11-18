@@ -4,4 +4,6 @@ import bg.softuni.pcstore.model.dto.UserRegisterDto;
 
 public interface UserService {
     void register(UserRegisterDto userRegisterDto);
+
+    boolean activateAccount(String token);
 }
