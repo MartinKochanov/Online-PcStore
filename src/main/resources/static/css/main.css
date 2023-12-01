@@ -83,8 +83,9 @@ p {
     transform: scale(1.05);
 }
 
-body > section > div > div > div > div > div > div > form > div.d-flex.justify-content-center > button, #loginBtn{
+body > section > div > div > div > div > div > div > form > div.d-flex.justify-content-center > button, .loginBtn{
     border: 2px solid #be2ef3;
+    outline: none;
 }
 
 
@@ -99,5 +100,12 @@ body > section > div > div > div > div > div > div > form > div.d-flex.justify-c
 }
 
 
+#type {
+    outline: none;
+}
+
+#typeProduct {
+    outline: none;
+}
 
 

@@ -5,18 +5,13 @@ public enum ProductTypeEnum {
     MOTHERBOARD,
     CPU,
     COOLER,
-    M2SSD,
-    POWER_SUPPLY,
-    RAM,
-    FANS,
-    GRAPHIC_CARD,
     SSD,
     HDD,
-    THERMAL_PASTE,
+    RAM,
+    POWER_SUPPLY,
+    FANS,
+    GRAPHIC_CARD,
+    M2SSD,
     MOUSE,
-    KEYBOARD,
-    CAMERA,
-    MONITOR
-
-
+    KEYBOARD
 }

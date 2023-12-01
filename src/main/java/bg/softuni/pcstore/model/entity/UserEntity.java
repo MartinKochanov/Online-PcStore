@@ -1,5 +1,6 @@
 package bg.softuni.pcstore.model.entity;
 
+import bg.softuni.pcstore.validation.UniqueUsername;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -15,8 +16,8 @@ public class UserEntity extends BaseEntity {
 
     @NotNull
     @Length(min = 6)
+    @Column(unique = true)
     private String username;
-
     @NotNull
     private String firstName;
     private String lastName;

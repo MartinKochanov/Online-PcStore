@@ -21,7 +21,7 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests(
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/login", "/register","/login-error", "/admin/add-product").permitAll()
+                        .requestMatchers("/", "/login", "/register","/login-error", "/admin/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/activation", "/activation/**").permitAll()
                         .requestMatchers("/success-registration").permitAll()
                         .requestMatchers("/error").permitAll()

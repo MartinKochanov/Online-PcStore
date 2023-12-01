@@ -10,10 +10,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-@Constraint(validatedBy = UniqueUsernameValidator.class)
-public @interface UniqueUsername {
+@Constraint(validatedBy = UniqueModelValidator.class)
+public @interface UniqueModel {
 
-    String message() default "The product already exist!";
+    String message() default "This models already exists!";
 
     Class<?>[] groups() default {};
 
