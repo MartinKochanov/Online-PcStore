@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "specifications")
@@ -25,6 +26,40 @@ public class SpecificationEntity extends BaseEntity {
     private TypeMemoryEnum memoryType;
     @Enumerated(EnumType.STRING)
     private GraphicCardSlotsEnum graphicCardSlot;
+    @Enumerated(EnumType.STRING)
+    private VideoMemoryTypeEnum videoMemoryType;
+    @PositiveOrZero
+    private Integer capacity;
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private ResolutionsEnum resolution;
+
+    public ResolutionsEnum getResolution() {
+        return resolution;
+    }
+
+    public SpecificationEntity setResolution(ResolutionsEnum resolution) {
+        this.resolution = resolution;
+        return this;
+    }
+
+    public SpecificationEntity setCapacity(Integer capacity) {
+        this.capacity = capacity;
+        return this;
+    }
+
+    public VideoMemoryTypeEnum getVideoMemoryType() {
+        return videoMemoryType;
+    }
+
+    public SpecificationEntity setVideoMemoryType(VideoMemoryTypeEnum videoMemoryType) {
+        this.videoMemoryType = videoMemoryType;
+        return this;
+    }
 
     public GraphicCardSlotsEnum getGraphicCardSlot() {
         return graphicCardSlot;

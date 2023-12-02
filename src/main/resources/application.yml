@@ -35,3 +35,7 @@ mail:
         auth: true
         starttls:
           enable: true
+server:
+  error:
+    whitelabel:
+      enabled: false

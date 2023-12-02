@@ -5,12 +5,14 @@ import bg.softuni.pcstore.model.dto.NewProductDTO;
 import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.service.AdminService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -58,6 +60,8 @@ public class AdminController {
         modelAndView.addObject("cpuSockets", CpuSocketTypesEnum.values());
         modelAndView.addObject("memoryTypes", TypeMemoryEnum.values());
         modelAndView.addObject("graphicCardTypes", GraphicCardSlotsEnum.values());
+        modelAndView.addObject("resolutions", ResolutionsEnum.values());
+
 
 
 

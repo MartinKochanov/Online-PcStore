@@ -41,6 +41,41 @@ public class NewProductDTO {
     @Enumerated(EnumType.STRING)
     private GraphicCardSlotsEnum graphicCardSlot;
 
+    @Enumerated(EnumType.STRING)
+    private VideoMemoryTypeEnum videoMemoryType;
+    @PositiveOrZero
+    private Integer capacity;
+
+    @Enumerated(EnumType.STRING)
+    private ResolutionsEnum resolution;
+
+    public ResolutionsEnum getResolution() {
+        return resolution;
+    }
+
+    public NewProductDTO setResolution(ResolutionsEnum resolution) {
+        this.resolution = resolution;
+        return this;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public NewProductDTO setCapacity(Integer capacity) {
+        this.capacity = capacity;
+        return this;
+    }
+
+    public VideoMemoryTypeEnum getVideoMemoryType() {
+        return videoMemoryType;
+    }
+
+    public NewProductDTO setVideoMemoryType(VideoMemoryTypeEnum videoMemoryType) {
+        this.videoMemoryType = videoMemoryType;
+        return this;
+    }
+
     public GraphicCardSlotsEnum getGraphicCardSlot() {
         return graphicCardSlot;
     }

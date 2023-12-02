@@ -10,4 +10,10 @@
 <div th:if="${product == 'MOTHERBOARD'}">
     <div th:replace="~{fragments/forms/add-motherboard}"></div>
 </div>
+<div th:if="${product == 'GRAPHIC_CARD'}">
+    <div th:replace="~{fragments/forms/add-graphic-card}"></div>
+</div>
+<div th:if="${product == 'CPU'}">
+    <div th:replace="~{fragments/forms/add-cpu}"></div>
+</div>
 
