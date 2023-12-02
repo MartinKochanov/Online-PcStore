@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<section class="mt-5 mb-5 vh-100 data" id="MOTHERBOARD">
+    <div class="d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <form th:action="@{/admin/add-product/{product}(product = MOTHERBOARD)}"
+                                  th:method="POST"
+                                  th:object="${newProductDTO}">
+                                <input class="bg-transparent form-control border-0 form-control-lg text-uppercase text-center text-light mb-5 disabled fs-3"
+                                       th:value="MOTHERBOARD"
+                                       th:text="MOTHERBOARD"
+                                       th:name="typeProduct"
+                                       readonly/>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('manufacturer')}"
+                                           th:errors="*{manufacturer}"></small>
+                                    <select
+                                            th:field="*{manufacturer}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT MANUFACTURER--</option>
+                                        <option class="ui-menu-item bg-dark"
+                                                th:each="manufacturer : ${manufacturers}"
+                                                th:text="${manufacturer.name()}"
+                                                th:value="${manufacturer}">
+                                        </option>
+                                    </select>
+                                    <label class="form-label text-light">Manufacturer</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('model')}"
+                                           th:errors="*{model}"></small>
+                                    <input
+                                            th:field="*{model}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light"
+                                            required
+                                    />
+                                    <label class="form-label text-light">Model</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('price')}"
+                                           th:errors="*{price}"></small>
+                                    <input type="number"
+                                           min="0"
+                                           th:field="*{price}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                           required/>
+                                    <label class="form-label text-light">Price</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('description')}"
+                                           th:errors="*{description}"></small>
+                                    <textarea
+                                            rows="4"
+                                            th:field="*{description}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light"
+                                            required></textarea>
+                                    <label class="form-label text-light">Description</label>
+                                </div>
+                                <h1 class="bg-transparent form-control border-0 form-control-lg text-uppercase text-center text-light mb-5 disabled fs-3">
+                                    Specifications</h1>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('cpuSocket')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                    <select th:field="*{cpuSocket}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT CPU SOCKET--</option>
+                                        <option class="ui-menu-item bg-dark text-uppercase"
+                                                th:each="socket : ${cpuSockets}"
+                                                th:text="${socket.getName()}"
+                                                th:value="${socket.name()}">
+                                        </option>
+                                    </select>
+                                    <label class="form-label text-light">Socket Type</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('format')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                    <select id="format"
+                                            th:field="*{format}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT FORMAT--</option>
+                                        <option class="ui-menu-item bg-dark"
+                                                th:each="format : ${caseFormats}"
+                                                th:text="${format.getName()}"
+                                                th:value="${format.name()}">
+                                        </option>
+                                    </select>
+                                    <label class="form-label text-light" for="format">Format</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('memorySlots')}"
+                                           th:errors="*{memorySlots}"></small>
+                                    <input type="number"
+                                           min="0"
+                                           th:field="*{memorySlots}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                           required/>
+                                    <label class="form-label text-light">Memory Slots</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('maxMemory')}"
+                                           th:errors="*{maxMemory}"></small>
+                                    <input type="number"
+                                           min="0"
+                                           th:field="*{maxMemory}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                           required/>
+                                    <label class="form-label text-light">Max Memory</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('memoryType')}"
+                                           th:errors="*{memoryType}"></small>
+                                    <select
+                                            th:field="*{memoryType}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT MEMORY TYPE--</option>
+                                        <option class="ui-menu-item bg-dark"
+                                                th:each="memory : ${memoryTypes}"
+                                                th:text="${memory.name()}"
+                                                th:value="${memory}">
+                                        </option>
+                                    </select>
+                                    <label class="form-label text-light">Memory Type</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('graphicCardSlot')}"
+                                           th:errors="*{graphicCardSlot}"></small>
+                                    <select
+                                            th:field="*{graphicCardSlot}"
+                                            th:errorClass="bg-danger"
+                                            class="form-control form-control-lg bg-transparent text-light">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT GRAPHIC CARD SLOT TYPE--</option>
+                                        <option class="ui-menu-item bg-dark"
+                                                th:each="graphicCard : ${graphicCardTypes}"
+                                                th:text="${graphicCard.name()}"
+                                                th:value="${graphicCard}">
+                                        </option>
+                                    </select>
+                                    <label class="form-label text-light">Graphic Card Slot Type</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit"
+                                           class="btn btn-block btn-lg text-light registerGlowButton loginBtn"
+                                           value="ADD"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -5,5 +5,5 @@ import jakarta.validation.Valid;
 
 public interface AdminService {
 
-    void addNewProduct(@Valid NewProductDTO newProductDTO);
+    void addNewProduct(@Valid NewProductDTO newProductDTO, String productName);
 }

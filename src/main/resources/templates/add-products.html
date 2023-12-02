@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{/fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 mt-5">
+        <div class="col-12 col-xl-2 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/admin/add-product/{product}(product = CASE)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/case.webp"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            CASE
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-xl-2 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/admin/add-product/{product}(product = MOTHERBOARD)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/motherboard.png"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            MOTHERBOARD
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

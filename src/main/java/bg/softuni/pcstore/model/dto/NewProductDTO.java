@@ -1,9 +1,6 @@
 package bg.softuni.pcstore.model.dto;
 
-import bg.softuni.pcstore.model.enums.CaseTypeEnum;
-import bg.softuni.pcstore.model.enums.FormatEnum;
-import bg.softuni.pcstore.model.enums.ManufacturerEnum;
-import bg.softuni.pcstore.model.enums.ProductTypeEnum;
+import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.validation.UniqueModel;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,9 +11,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 public class NewProductDTO {
-    @Enumerated(EnumType.STRING)
-    @NotNull
-    private ProductTypeEnum typeProduct;
+    private String typeProduct;
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Manufacturer was not selected!")
     private ManufacturerEnum manufacturer;
@@ -32,15 +27,43 @@ public class NewProductDTO {
     @Enumerated(EnumType.STRING)
     private FormatEnum format;
     @PositiveOrZero(message = "Fans cannot be negative!")
-    private int fans;
+    private Integer fans;
     @PositiveOrZero(message = "Weight cannot be negative!")
-    private int weight;
+    private Integer weight;
+    @Enumerated(EnumType.STRING)
+    private CpuSocketTypesEnum cpuSocket;
+    private Integer memorySlots;
+    @PositiveOrZero
+    private Integer maxMemory;
+    @Enumerated(EnumType.STRING)
+    private TypeMemoryEnum memoryType;
 
-    public ProductTypeEnum getTypeProduct() {
+    @Enumerated(EnumType.STRING)
+    private GraphicCardSlotsEnum graphicCardSlot;
+
+    public GraphicCardSlotsEnum getGraphicCardSlot() {
+        return graphicCardSlot;
+    }
+
+    public NewProductDTO setGraphicCardSlot(GraphicCardSlotsEnum graphicCardSlot) {
+        this.graphicCardSlot = graphicCardSlot;
+        return this;
+    }
+
+    public Integer getMemorySlots() {
+        return memorySlots;
+    }
+
+    public NewProductDTO setMemorySlots(Integer memorySlots) {
+        this.memorySlots = memorySlots;
+        return this;
+    }
+
+    public String getTypeProduct() {
         return typeProduct;
     }
 
-    public NewProductDTO setTypeProduct(ProductTypeEnum typeProduct) {
+    public NewProductDTO setTypeProduct(String typeProduct) {
         this.typeProduct = typeProduct;
         return this;
     }
@@ -99,22 +122,48 @@ public class NewProductDTO {
         return this;
     }
 
-    public int getFans() {
+    public Integer getFans() {
         return fans;
     }
 
-    public NewProductDTO setFans(int fans) {
+    public NewProductDTO setFans(Integer fans) {
         this.fans = fans;
         return this;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public NewProductDTO setWeight(int weight) {
+    public NewProductDTO setWeight(Integer weight) {
         this.weight = weight;
         return this;
     }
-    //TODO: Add the rest of the specifications
+
+    public CpuSocketTypesEnum getCpuSocket() {
+        return cpuSocket;
+    }
+
+    public NewProductDTO setCpuSocket(CpuSocketTypesEnum cpuSocket) {
+        this.cpuSocket = cpuSocket;
+        return this;
+    }
+
+    public Integer getMaxMemory() {
+        return maxMemory;
+    }
+
+    public NewProductDTO setMaxMemory(Integer maxMemory) {
+        this.maxMemory = maxMemory;
+        return this;
+    }
+
+    public TypeMemoryEnum getMemoryType() {
+        return memoryType;
+    }
+
+    public NewProductDTO setMemoryType(TypeMemoryEnum memoryType) {
+        this.memoryType = memoryType;
+        return this;
+    }
 }

@@ -1,7 +1,6 @@
 package bg.softuni.pcstore.model.entity;
 
-import bg.softuni.pcstore.model.enums.CaseTypeEnum;
-import bg.softuni.pcstore.model.enums.FormatEnum;
+import bg.softuni.pcstore.model.enums.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,8 +13,27 @@ public class SpecificationEntity extends BaseEntity {
     private CaseTypeEnum caseType;
     @Enumerated(EnumType.STRING)
     private FormatEnum format;
-    private int fans;
-    private int weight;
+    private Integer fans;
+    private Integer weight;
+    @Enumerated(EnumType.STRING)
+    private CpuSocketTypesEnum cpuSocket;
+
+    private Integer memorySlots;
+
+    private Integer maxMemory;
+    @Enumerated(EnumType.STRING)
+    private TypeMemoryEnum memoryType;
+    @Enumerated(EnumType.STRING)
+    private GraphicCardSlotsEnum graphicCardSlot;
+
+    public GraphicCardSlotsEnum getGraphicCardSlot() {
+        return graphicCardSlot;
+    }
+
+    public SpecificationEntity setGraphicCardSlot(GraphicCardSlotsEnum graphicCardSlot) {
+        this.graphicCardSlot = graphicCardSlot;
+        return this;
+    }
 
     public CaseTypeEnum getCaseType() {
         return caseType;
@@ -35,23 +53,58 @@ public class SpecificationEntity extends BaseEntity {
         return this;
     }
 
-    public int getFans() {
+    public Integer getFans() {
         return fans;
     }
 
-    public SpecificationEntity setFans(int fans) {
+    public SpecificationEntity setFans(Integer fans) {
         this.fans = fans;
         return this;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public SpecificationEntity setWeight(int weight) {
+    public SpecificationEntity setWeight(Integer weight) {
         this.weight = weight;
         return this;
     }
 
+    public CpuSocketTypesEnum getCpuSocket() {
+        return cpuSocket;
+    }
+
+    public SpecificationEntity setCpuSocket(CpuSocketTypesEnum cpuSocket) {
+        this.cpuSocket = cpuSocket;
+        return this;
+    }
+
+    public Integer getMaxMemory() {
+        return maxMemory;
+    }
+
+    public SpecificationEntity setMaxMemory(Integer maxMemory) {
+        this.maxMemory = maxMemory;
+        return this;
+    }
+
+    public Integer getMemorySlots() {
+        return memorySlots;
+    }
+
+    public SpecificationEntity setMemorySlots(Integer memorySlots) {
+        this.memorySlots = memorySlots;
+        return this;
+    }
+
+    public TypeMemoryEnum getMemoryType() {
+        return memoryType;
+    }
+
+    public SpecificationEntity setMemoryType(TypeMemoryEnum memoryType) {
+        this.memoryType = memoryType;
+        return this;
+    }
     //TODO: Add the rest of specifications
 }
