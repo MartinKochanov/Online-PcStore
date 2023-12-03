@@ -9,11 +9,11 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card bg-transparent registerGlow">
                         <div class="card-body p-5">
-                            <form th:action="@{/admin/add-product/{product}(product = CASE)}"
+                            <form th:action="@{/admin/add-product/{product}(product = POWER_SUPPLY)}"
                                   th:method="POST"
                                   th:object="${newProductDTO}">
                                 <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
-                                    readonly>CASE</h1>
+                                    readonly>POWER SUPPLY</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
                                            th:if="${#fields.hasErrors('manufacturer')}"
@@ -72,55 +72,27 @@
                                     Specifications</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('caseType')}">Ooopsies! You are trying some illegal actions! :)</small>
-                                    <select th:field="*{caseType}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT CASE TYPE--</option>
-                                        <option class="ui-menu-item bg-dark text-uppercase"
-                                                th:each="case : ${caseTypes}"
-                                                th:text="${case.getName()}"
-                                                th:value="${case.name()}">
-                                        </option>
-                                    </select>
-                                    <label class="form-label text-light">Case Type</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('format')}">Ooopsies! You are trying some illegal actions! :)</small>
-                                    <select th:field="*{format}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT FORMAT--</option>
-                                        <option class="ui-menu-item bg-dark"
-                                                th:each="format : ${caseFormats}"
-                                                th:text="${format.getName()}"
-                                                th:value="${format.name()}">
-                                        </option>
-                                    </select>
-                                    <label class="form-label text-light">Motherboard Format</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('fans')}"
-                                           th:errors="*{fans}"></small>
+                                           th:if="${#fields.hasErrors('power')}"
+                                           th:errors="*{power}"></small>
                                     <input type="number"
                                            min="0"
-                                           th:field="*{fans}"
+                                           th:field="*{power}"
                                            th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Fans</label>
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                           required/>
+                                    <label class="form-label text-light">Power</label>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('weight')}"
-                                           th:errors="*{weight}"></small>
+                                           th:if="${#fields.hasErrors('efficiency')}"
+                                           th:errors="*{efficiency}"></small>
                                     <input type="number"
                                            min="0"
-                                           th:field="*{weight}"
+                                           th:field="*{efficiency}"
                                            th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Weight</label>
+                                           class="form-control form-control-lg bg-transparent text-light"
+                                           required/>
+                                    <label class="form-label text-light">Efficiency</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input type="submit"
@@ -128,8 +100,6 @@
                                            value="ADD"/>
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>

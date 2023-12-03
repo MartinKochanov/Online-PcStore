@@ -1,6 +1,7 @@
 package bg.softuni.pcstore.web;
 
 
+import bg.softuni.pcstore.exception.ObjectNotFoundException;
 import bg.softuni.pcstore.model.dto.NewProductDTO;
 import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.service.AdminService;
@@ -51,9 +52,11 @@ public class AdminController {
 
 
     private static ModelAndView getAddProductView(String product) {
+        if (!ProductTypeEnum.contains(product)) {
+            throw new ObjectNotFoundException("No suck product found!");
+        }
         ModelAndView modelAndView = new ModelAndView("add-product");
         modelAndView.addObject("product", product);
-        modelAndView.addObject("productTypes", ProductTypeEnum.values());
         modelAndView.addObject("manufacturers", ManufacturerEnum.values());
         modelAndView.addObject("caseTypes", CaseTypeEnum.values());
         modelAndView.addObject("caseFormats", FormatEnum.values());
@@ -61,9 +64,8 @@ public class AdminController {
         modelAndView.addObject("memoryTypes", TypeMemoryEnum.values());
         modelAndView.addObject("graphicCardTypes", GraphicCardSlotsEnum.values());
         modelAndView.addObject("resolutions", ResolutionsEnum.values());
-
-
-
+        modelAndView.addObject("coolingTypes", CoolerTypesEnum.values());
+        modelAndView.addObject("driveInterfaces", DrivesInterfacesEnum.values());
 
         return modelAndView;
     }

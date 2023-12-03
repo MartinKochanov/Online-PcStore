@@ -9,11 +9,11 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card bg-transparent registerGlow">
                         <div class="card-body p-5">
-                            <form th:action="@{/admin/add-product/{product}(product = CASE)}"
+                            <form th:action="@{/admin/add-product/{product}(product = CPU)}"
                                   th:method="POST"
                                   th:object="${newProductDTO}">
                                 <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
-                                    readonly>CASE</h1>
+                                    readonly>CPU</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
                                            th:if="${#fields.hasErrors('manufacturer')}"
@@ -72,57 +72,73 @@
                                     Specifications</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('caseType')}"
-                                           th:errors="*{caseType}"></small>
-                                    <select th:field="*{caseType}"
+                                           th:if="${#fields.hasErrors('cpuSocket')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                    <select th:field="*{cpuSocket}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT CASE TYPE--</option>
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT SOCKET--</option>
                                         <option class="ui-menu-item bg-dark text-uppercase"
-                                                th:each="case : ${caseTypes}"
-                                                th:text="${case.getName()}"
-                                                th:value="${case.name()}">
+                                                th:each="cpu : ${cpuSockets}"
+                                                th:text="${cpu.getName()}"
+                                                th:value="${cpu.name()}">
                                         </option>
                                     </select>
-                                    <label class="form-label text-light">Case Type</label>
+                                    <label class="form-label text-light">Socket</label>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('format')}"
-                                           th:errors="*{format}"></small>
-                                    <select th:field="*{format}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT FORMAT--</option>
-                                        <option class="ui-menu-item bg-dark"
-                                                th:each="format : ${caseFormats}"
-                                                th:text="${format.getName()}"
-                                                th:value="${format.name()}">
-                                        </option>
-                                    </select>
-                                    <label class="form-label text-light" for="format">Motherboard Format</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('fans')}"
-                                           th:errors="*{fans}"></small>
+                                           th:if="${#fields.hasErrors('cashMemory')}"
+                                           th:errors="*{cashMemory}"></small>
                                     <input type="number"
                                            min="0"
-                                           th:field="*{fans}"
+                                           th:field="*{cashMemory}"
                                            th:errorClass="bg-danger"
                                            class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Fans</label>
+                                    <label class="form-label text-light">Cash Memory</label>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('weight')}"
-                                           th:errors="*{weight}"></small>
+                                           th:if="${#fields.hasErrors('frequency')}"
+                                           th:errors="*{frequency}"></small>
                                     <input type="number"
-                                           min="0"
-                                           th:field="*{weight}"
+                                           step="0.01"
+                                           th:field="*{frequency}"
                                            th:errorClass="bg-danger"
                                            class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Weight</label>
+                                    <label class="form-label text-light">Frequency</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('boost')}"
+                                           th:errors="*{boost}"></small>
+                                    <input type="number"
+                                           step="0.01"
+                                           th:field="*{boost}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Boost</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('cores')}"
+                                           th:errors="*{cores}"></small>
+                                    <input type="number"
+                                           min="0"
+                                           th:field="*{cores}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Cores</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('threads')}"
+                                           th:errors="*{threads}"></small>
+                                    <input type="number"
+                                           min="0"
+                                           th:field="*{threads}"
+                                           th:errorClass="bg-danger"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Threads</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input type="submit"
@@ -130,8 +146,6 @@
                                            value="ADD"/>
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>

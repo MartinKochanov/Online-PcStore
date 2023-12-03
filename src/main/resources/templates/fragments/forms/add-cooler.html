@@ -9,11 +9,11 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card bg-transparent registerGlow">
                         <div class="card-body p-5">
-                            <form th:action="@{/admin/add-product/{product}(product = CASE)}"
+                            <form th:action="@{/admin/add-product/{product}(product = COOLER)}"
                                   th:method="POST"
                                   th:object="${newProductDTO}">
                                 <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
-                                    readonly>CASE</h1>
+                                    readonly>COOLER</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
                                            th:if="${#fields.hasErrors('manufacturer')}"
@@ -72,55 +72,33 @@
                                     Specifications</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('caseType')}">Ooopsies! You are trying some illegal actions! :)</small>
-                                    <select th:field="*{caseType}"
+                                           th:if="${#fields.hasErrors('cpuSocket')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                    <select th:field="*{cpuSocket}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT CASE TYPE--</option>
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT SOCKET--</option>
                                         <option class="ui-menu-item bg-dark text-uppercase"
-                                                th:each="case : ${caseTypes}"
-                                                th:text="${case.getName()}"
-                                                th:value="${case.name()}">
+                                                th:each="cpu : ${cpuSockets}"
+                                                th:text="${cpu.getName()}"
+                                                th:value="${cpu.name()}">
                                         </option>
                                     </select>
-                                    <label class="form-label text-light">Case Type</label>
+                                    <label class="form-label text-light">Socket</label>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('format')}">Ooopsies! You are trying some illegal actions! :)</small>
-                                    <select th:field="*{format}"
+                                           th:if="${#fields.hasErrors('coolingType')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                    <select th:field="*{coolingType}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT FORMAT--</option>
-                                        <option class="ui-menu-item bg-dark"
-                                                th:each="format : ${caseFormats}"
-                                                th:text="${format.getName()}"
-                                                th:value="${format.name()}">
+                                        <option class="ui-menu-item bg-dark" value="">--SELECT COOLING TYPE--</option>
+                                        <option class="ui-menu-item bg-dark text-uppercase"
+                                                th:each="type : ${coolingTypes}"
+                                                th:text="${type.getName()}"
+                                                th:value="${type.name()}">
                                         </option>
                                     </select>
-                                    <label class="form-label text-light">Motherboard Format</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('fans')}"
-                                           th:errors="*{fans}"></small>
-                                    <input type="number"
-                                           min="0"
-                                           th:field="*{fans}"
-                                           th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Fans</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('weight')}"
-                                           th:errors="*{weight}"></small>
-                                    <input type="number"
-                                           min="0"
-                                           th:field="*{weight}"
-                                           th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Weight</label>
+                                    <label class="form-label text-light">Cooling Type</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input type="submit"
@@ -128,8 +106,6 @@
                                            value="ADD"/>
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>

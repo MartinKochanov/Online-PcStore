@@ -32,8 +32,9 @@ public class NewProductDTO {
     private Integer weight;
     @Enumerated(EnumType.STRING)
     private CpuSocketTypesEnum cpuSocket;
+    @PositiveOrZero(message = "Slots cannot be negative!")
     private Integer memorySlots;
-    @PositiveOrZero
+    @PositiveOrZero(message = "Memory cannot be negative!")
     private Integer maxMemory;
     @Enumerated(EnumType.STRING)
     private TypeMemoryEnum memoryType;
@@ -43,11 +44,122 @@ public class NewProductDTO {
 
     @Enumerated(EnumType.STRING)
     private VideoMemoryTypeEnum videoMemoryType;
-    @PositiveOrZero
+    @PositiveOrZero(message = "Capacity cannot be negative!")
     private Integer capacity;
 
     @Enumerated(EnumType.STRING)
     private ResolutionsEnum resolution;
+    @PositiveOrZero(message = "Cash Memory cannot be negative!")
+    private Integer cashMemory;
+    @PositiveOrZero(message = "Frequency cannot be negative!")
+    private Double frequency;
+    @PositiveOrZero(message = "Boost cannot be negative!")
+    private Double boost;
+    @PositiveOrZero(message = "Cores cannot be negative!")
+    private Integer cores;
+    @PositiveOrZero(message = "Threads cannot be negative!")
+    private Integer threads;
+    @Enumerated(EnumType.STRING)
+    private CoolerTypesEnum coolingType;
+    @PositiveOrZero(message = "Rotation speed cannot be negative!")
+    private Integer rotationSpeed;
+    @PositiveOrZero(message = "Power cannot be negative!")
+    private Integer power;
+    @PositiveOrZero
+    private Integer efficiency;
+
+    @Enumerated(EnumType.STRING)
+    private DrivesInterfacesEnum driveInterface;
+
+    public DrivesInterfacesEnum getDriveInterface() {
+        return driveInterface;
+    }
+
+    public NewProductDTO setDriveInterface(DrivesInterfacesEnum driveInterface) {
+        this.driveInterface = driveInterface;
+        return this;
+    }
+
+    public Integer getEfficiency() {
+        return efficiency;
+    }
+
+    public NewProductDTO setEfficiency(Integer efficiency) {
+        this.efficiency = efficiency;
+        return this;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public NewProductDTO setPower(Integer power) {
+        this.power = power;
+        return this;
+    }
+
+    public Integer getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public NewProductDTO setRotationSpeed(Integer rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
+        return this;
+    }
+
+    public CoolerTypesEnum getCoolingType() {
+        return coolingType;
+    }
+
+    public NewProductDTO setCoolingType(CoolerTypesEnum coolingType) {
+        this.coolingType = coolingType;
+        return this;
+    }
+
+    public Double getBoost() {
+        return boost;
+    }
+
+    public NewProductDTO setBoost(Double boost) {
+        this.boost = boost;
+        return this;
+    }
+
+    public Integer getCores() {
+        return cores;
+    }
+
+    public NewProductDTO setCores(Integer cores) {
+        this.cores = cores;
+        return this;
+    }
+
+    public Integer getThreads() {
+        return threads;
+    }
+
+    public NewProductDTO setThreads(Integer threads) {
+        this.threads = threads;
+        return this;
+    }
+
+    public Integer getCashMemory() {
+        return cashMemory;
+    }
+
+    public NewProductDTO setCashMemory(Integer cashMemory) {
+        this.cashMemory = cashMemory;
+        return this;
+    }
+
+    public Double getFrequency() {
+        return frequency;
+    }
+
+    public NewProductDTO setFrequency(Double frequency) {
+        this.frequency = frequency;
+        return this;
+    }
 
     public ResolutionsEnum getResolution() {
         return resolution;

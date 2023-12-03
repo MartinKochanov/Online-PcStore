@@ -16,4 +16,20 @@
 <div th:if="${product == 'CPU'}">
     <div th:replace="~{fragments/forms/add-cpu}"></div>
 </div>
+<div th:if="${product == 'COOLER'}">
+    <div th:replace="~{fragments/forms/add-cooler}"></div>
+</div>
+<div th:if="${product == 'RAM'}">
+    <div th:replace="~{fragments/forms/add-ram}"></div>
+</div>
+<div th:if="${product == 'FAN'}">
+    <div th:replace="~{fragments/forms/add-fan}"></div>
+</div>
+<div th:if="${product == 'POWER_SUPPLY'}">
+    <div th:replace="~{fragments/forms/add-power-supply}"></div>
+</div>
+<div th:if="${product == 'HDD'}">
+    <div th:replace="~{fragments/forms/add-hdd}"></div>
+</div>
+
 

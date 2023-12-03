@@ -30,6 +30,41 @@ public class SpecificationEntity extends BaseEntity {
     private VideoMemoryTypeEnum videoMemoryType;
     @PositiveOrZero
     private Integer capacity;
+    @PositiveOrZero
+    private Integer power;
+
+    @PositiveOrZero
+    private Integer efficiency;
+
+    @Enumerated(EnumType.STRING)
+    private DrivesInterfacesEnum driveInterface;
+
+    public DrivesInterfacesEnum getDriveInterface() {
+        return driveInterface;
+    }
+
+    public SpecificationEntity setDriveInterface(DrivesInterfacesEnum driveInterface) {
+        this.driveInterface = driveInterface;
+        return this;
+    }
+
+    public Integer getEfficiency() {
+        return efficiency;
+    }
+
+    public SpecificationEntity setEfficiency(Integer efficiency) {
+        this.efficiency = efficiency;
+        return this;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public SpecificationEntity setPower(Integer power) {
+        this.power = power;
+        return this;
+    }
 
     public Integer getCapacity() {
         return capacity;
@@ -37,6 +72,85 @@ public class SpecificationEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private ResolutionsEnum resolution;
+    @PositiveOrZero
+    private Integer cashMemory;
+    @PositiveOrZero
+    private Double frequency;
+    @PositiveOrZero
+    private Double boost;
+    @PositiveOrZero
+    private Integer cores;
+    @PositiveOrZero
+    private Integer threads;
+    @PositiveOrZero
+    private Integer rotationSpeed;
+
+    public Integer getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public SpecificationEntity setRotationSpeed(Integer rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
+        return this;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private CoolerTypesEnum coolingType;
+
+    public CoolerTypesEnum getCoolingType() {
+        return coolingType;
+    }
+
+    public SpecificationEntity setCoolingType(CoolerTypesEnum coolingType) {
+        this.coolingType = coolingType;
+        return this;
+    }
+
+    public Double getBoost() {
+        return boost;
+    }
+
+    public SpecificationEntity setBoost(Double boost) {
+        this.boost = boost;
+        return this;
+    }
+
+    public Integer getCores() {
+        return cores;
+    }
+
+    public SpecificationEntity setCores(Integer cores) {
+        this.cores = cores;
+        return this;
+    }
+
+    public Integer getThreads() {
+        return threads;
+    }
+
+    public SpecificationEntity setThreads(Integer threads) {
+        this.threads = threads;
+        return this;
+    }
+
+    public Integer getCashMemory() {
+        return cashMemory;
+    }
+
+
+    public SpecificationEntity setCashMemory(Integer cashMemory) {
+        this.cashMemory = cashMemory;
+        return this;
+    }
+
+    public Double getFrequency() {
+        return frequency;
+    }
+
+    public SpecificationEntity setFrequency(Double frequency) {
+        this.frequency = frequency;
+        return this;
+    }
 
     public ResolutionsEnum getResolution() {
         return resolution;
