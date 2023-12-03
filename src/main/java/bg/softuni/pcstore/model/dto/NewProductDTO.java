@@ -65,8 +65,53 @@ public class NewProductDTO {
     private Integer rotationSpeed;
     @PositiveOrZero(message = "Power cannot be negative!")
     private Integer power;
-    @PositiveOrZero
+    @PositiveOrZero(message = "Efficiency cannot be negative!")
     private Integer efficiency;
+    @Enumerated(EnumType.STRING)
+    private SsdTypesEnum ssdType;
+    @Enumerated(EnumType.STRING)
+    private DrivesInterfacesEnum drivesInterface;
+
+    @PositiveOrZero(message = "Read speed cannot be negative!")
+    private Integer readSpeed;
+
+    @PositiveOrZero(message = "Write speed cannot be negative!")
+    private Integer writeSpeed;
+
+    public DrivesInterfacesEnum getDrivesInterface() {
+        return drivesInterface;
+    }
+
+    public NewProductDTO setDrivesInterface(DrivesInterfacesEnum drivesInterface) {
+        this.drivesInterface = drivesInterface;
+        return this;
+    }
+
+    public Integer getReadSpeed() {
+        return readSpeed;
+    }
+    public NewProductDTO setReadSpeed(Integer readSpeed) {
+        this.readSpeed = readSpeed;
+        return this;
+    }
+
+    public Integer getWriteSpeed() {
+        return writeSpeed;
+    }
+
+    public NewProductDTO setWriteSpeed(Integer writeSpeed) {
+        this.writeSpeed = writeSpeed;
+        return this;
+    }
+
+    public SsdTypesEnum getSsdType() {
+        return ssdType;
+    }
+
+    public NewProductDTO setSsdType(SsdTypesEnum ssdType) {
+        this.ssdType = ssdType;
+        return this;
+    }
 
     @Enumerated(EnumType.STRING)
     private DrivesInterfacesEnum driveInterface;

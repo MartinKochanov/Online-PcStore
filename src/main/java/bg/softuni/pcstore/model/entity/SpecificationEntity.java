@@ -38,6 +38,14 @@ public class SpecificationEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private DrivesInterfacesEnum driveInterface;
+    @Enumerated(EnumType.STRING)
+    private SsdTypesEnum ssdType;
+
+    @PositiveOrZero
+    private Integer readSpeed;
+
+    @PositiveOrZero
+    private Integer writeSpeed;
 
     public DrivesInterfacesEnum getDriveInterface() {
         return driveInterface;
@@ -47,6 +55,34 @@ public class SpecificationEntity extends BaseEntity {
         this.driveInterface = driveInterface;
         return this;
     }
+
+    public Integer getReadSpeed() {
+        return readSpeed;
+    }
+
+    public SpecificationEntity setReadSpeed(Integer readSpeed) {
+        this.readSpeed = readSpeed;
+        return this;
+    }
+
+    public Integer getWriteSpeed() {
+        return writeSpeed;
+    }
+
+    public SpecificationEntity setWriteSpeed(Integer writeSpeed) {
+        this.writeSpeed = writeSpeed;
+        return this;
+    }
+
+    public SsdTypesEnum getSsdType() {
+        return ssdType;
+    }
+
+    public SpecificationEntity setSsdType(SsdTypesEnum ssdType) {
+        this.ssdType = ssdType;
+        return this;
+    }
+
 
     public Integer getEfficiency() {
         return efficiency;
