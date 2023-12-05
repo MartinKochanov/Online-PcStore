@@ -6,5 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
 
-    void addNewProduct(@Valid NewProductDTO newProductDTO, String productName, MultipartFile file);
+    void addNewProduct(@Valid NewProductDTO newProductDTO, String productName);
 }

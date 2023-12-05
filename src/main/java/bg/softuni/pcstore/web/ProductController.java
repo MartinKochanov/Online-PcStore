@@ -7,14 +7,16 @@ import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/admin")
 public class ProductController {
 
     private final ProductService productService;
@@ -22,30 +24,32 @@ public class ProductController {
     public ProductController(ProductService adminService) {
         this.productService = adminService;
     }
-    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping("/add-products")
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/admin/add-products")
     public ModelAndView addProduct() {
         return new ModelAndView("add-products");
     }
-    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/add-product/{product}")
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping(value = "/admin/add-product/{product}")
     public ModelAndView addProduct(@PathVariable(name = "product") String product,
                                    @ModelAttribute("newProductDTO") NewProductDTO newProductDTO) {
         return getAddProductView(product);
     }
-    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @PostMapping(value = "/add-product/{product}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping(value = "/admin/add-product/{product}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ModelAndView addProduct(@PathVariable(name = "product") String product,
                                    @Valid @ModelAttribute("newProductDTO") NewProductDTO newProductDTO,
-                                   BindingResult bindingResult,
-                                   @RequestParam("image") MultipartFile image
+                                   BindingResult bindingResult
     ) {
 
         if (bindingResult.hasErrors()) {
             return getAddProductView(product);
         }
 
-        productService.addNewProduct(newProductDTO, product, image);
+        productService.addNewProduct(newProductDTO, product);
 
 
         return new ModelAndView("redirect:/");

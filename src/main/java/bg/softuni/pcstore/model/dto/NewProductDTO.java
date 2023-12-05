@@ -2,6 +2,7 @@ package bg.softuni.pcstore.model.dto;
 
 import bg.softuni.pcstore.model.enums.ColorEnum;
 import bg.softuni.pcstore.model.enums.*;
+import bg.softuni.pcstore.validation.Image;
 import bg.softuni.pcstore.validation.UniqueModel;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.math.BigDecimal;
 
 public class NewProductDTO {
-    private String typeProduct;
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Manufacturer was not selected!")
     private ManufacturerEnum manufacturer;
@@ -91,7 +91,8 @@ public class NewProductDTO {
 
     @Enumerated(EnumType.STRING)
     private ConnectivityEnum connectivity;
-
+    @NotNull
+    @Image
     private MultipartFile image;
 
     public MultipartFile getImage() {
@@ -312,14 +313,6 @@ public class NewProductDTO {
         return this;
     }
 
-    public String getTypeProduct() {
-        return typeProduct;
-    }
-
-    public NewProductDTO setTypeProduct(String typeProduct) {
-        this.typeProduct = typeProduct;
-        return this;
-    }
 
     public ManufacturerEnum getManufacturer() {
         return manufacturer;

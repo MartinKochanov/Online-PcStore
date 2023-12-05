@@ -11,9 +11,6 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 
 @Service
@@ -33,13 +30,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public void addNewProduct(@Valid NewProductDTO newProductDTO, String productName, MultipartFile file) {
+    public void addNewProduct(@Valid NewProductDTO newProductDTO, String productName) {
 
 
         ProductEntity product = map(newProductDTO, productName);
 
         try {
-            product.setImage(file.getBytes());
+            product.setImage(newProductDTO.getImage().getBytes());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

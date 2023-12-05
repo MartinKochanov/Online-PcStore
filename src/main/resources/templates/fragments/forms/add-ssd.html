@@ -12,62 +12,9 @@
                             <form th:action="@{/admin/add-product/{product}(product = SSD)}"
                                   th:method="POST"
                                   th:object="${newProductDTO}">
-                                <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
-                                    readonly>SSD</h1>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('manufacturer')}"
-                                           th:errors="*{manufacturer}"></small>
-                                    <select
-                                            th:field="*{manufacturer}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light">
-                                        <option class="ui-menu-item bg-dark" value="">--SELECT MANUFACTURER--</option>
-                                        <option class="ui-menu-item bg-dark"
-                                                th:each="manufacturer : ${manufacturers}"
-                                                th:text="${manufacturer.name()}"
-                                                th:value="${manufacturer}">
-                                        </option>
-                                    </select>
-                                    <label class="form-label text-light">Manufacturer</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('model')}"
-                                           th:errors="*{model}"></small>
-                                    <input
-                                            th:field="*{model}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light"
-                                            required
-                                    />
-                                    <label class="form-label text-light">Model</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('price')}"
-                                           th:errors="*{price}"></small>
-                                    <input type="number"
-                                           min="0"
-                                           th:field="*{price}"
-                                           th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"
-                                           required/>
-                                    <label class="form-label text-light">Price</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('description')}"
-                                           th:errors="*{description}"></small>
-                                    <textarea
-                                            rows="4"
-                                            id="description"
-                                            th:field="*{description}"
-                                            th:errorClass="bg-danger"
-                                            class="form-control form-control-lg bg-transparent text-light"
-                                            required></textarea>
-                                    <label class="form-label text-light" for="description">Description</label>
-                                </div>
+                                <h1 th:text="SSD" class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
+                                    readonly></h1>
+                                <div th:replace="~{fragments/base-poduct-properties}"></div>
                                 <h1 class="bg-transparent form-control border-0 form-control-lg text-uppercase text-center text-light mb-5 disabled fs-3">
                                     Specifications</h1>
                                 <div class="form-outline mb-4">
