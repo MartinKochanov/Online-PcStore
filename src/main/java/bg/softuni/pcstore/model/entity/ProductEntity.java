@@ -4,6 +4,7 @@ import bg.softuni.pcstore.model.enums.ManufacturerEnum;
 import bg.softuni.pcstore.model.enums.ProductTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.math.BigDecimal;
 
@@ -24,6 +25,22 @@ public class ProductEntity extends BaseEntity {
     private BigDecimal price;
     @NotNull
     private String description;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public ProductEntity setImage(byte[] image) {
+        this.image = image;
+        return this;
+    }
+    public String generateBase64Image() {
+        return Base64.encodeBase64String(this.image);
+    }
+
     @OneToOne
     private SpecificationEntity specifications;
 
@@ -79,5 +96,8 @@ public class ProductEntity extends BaseEntity {
     public ProductEntity setSpecifications(SpecificationEntity specifications) {
         this.specifications = specifications;
         return this;
+    }
+    public String getShortDescription() {
+        return this.manufacturer + " " + this.model;
     }
 }

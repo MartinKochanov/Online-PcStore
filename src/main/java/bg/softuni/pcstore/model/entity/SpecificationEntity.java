@@ -46,6 +46,53 @@ public class SpecificationEntity extends BaseEntity {
 
     @PositiveOrZero
     private Integer writeSpeed;
+    @PositiveOrZero
+    private Integer dpi;
+
+    @PositiveOrZero
+    private Integer buttons;
+    @Enumerated(EnumType.STRING)
+    private ColorEnum color;
+
+    @Enumerated(EnumType.STRING)
+    private ConnectivityEnum connectivity;
+
+
+    public ConnectivityEnum getConnectivity() {
+        return connectivity;
+    }
+
+    public SpecificationEntity setConnectivity(ConnectivityEnum connectivity) {
+        this.connectivity = connectivity;
+        return this;
+    }
+
+    public ColorEnum getColor() {
+        return color;
+    }
+
+    public SpecificationEntity setColor(ColorEnum color) {
+        this.color = color;
+        return this;
+    }
+
+    public Integer getDpi() {
+        return dpi;
+    }
+
+    public SpecificationEntity setDpi(Integer dpi) {
+        this.dpi = dpi;
+        return this;
+    }
+
+    public Integer getButtons() {
+        return buttons;
+    }
+
+    public SpecificationEntity setButtons(Integer buttons) {
+        this.buttons = buttons;
+        return this;
+    }
 
     public DrivesInterfacesEnum getDriveInterface() {
         return driveInterface;

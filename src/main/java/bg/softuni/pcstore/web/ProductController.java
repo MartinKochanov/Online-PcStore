@@ -4,46 +4,48 @@ package bg.softuni.pcstore.web;
 import bg.softuni.pcstore.exception.ObjectNotFoundException;
 import bg.softuni.pcstore.model.dto.NewProductDTO;
 import bg.softuni.pcstore.model.enums.*;
-import bg.softuni.pcstore.service.AdminService;
+import bg.softuni.pcstore.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-//@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 @RequestMapping("/admin")
-public class AdminController {
+public class ProductController {
 
-    private final AdminService adminService;
+    private final ProductService productService;
 
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
+    public ProductController(ProductService adminService) {
+        this.productService = adminService;
     }
-
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/add-products")
     public ModelAndView addProduct() {
         return new ModelAndView("add-products");
     }
-
-    @GetMapping("/add-product/{product}")
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping(value = "/add-product/{product}")
     public ModelAndView addProduct(@PathVariable(name = "product") String product,
                                    @ModelAttribute("newProductDTO") NewProductDTO newProductDTO) {
         return getAddProductView(product);
     }
-
-
-    @PostMapping("/add-product/{product}")
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PostMapping(value = "/add-product/{product}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ModelAndView addProduct(@PathVariable(name = "product") String product,
                                    @Valid @ModelAttribute("newProductDTO") NewProductDTO newProductDTO,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult,
+                                   @RequestParam("image") MultipartFile image
+    ) {
 
         if (bindingResult.hasErrors()) {
             return getAddProductView(product);
         }
 
-        adminService.addNewProduct(newProductDTO, product);
+        productService.addNewProduct(newProductDTO, product, image);
 
 
         return new ModelAndView("redirect:/");
@@ -66,6 +68,9 @@ public class AdminController {
         modelAndView.addObject("coolingTypes", CoolerTypesEnum.values());
         modelAndView.addObject("driveInterfaces", DrivesInterfacesEnum.values());
         modelAndView.addObject("ssdTypes", SsdTypesEnum.values());
+        modelAndView.addObject("colors", ColorEnum.values());
+        modelAndView.addObject("connectivity", ConnectivityEnum.values());
+
 
         return modelAndView;
     }

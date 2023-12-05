@@ -1,9 +1,10 @@
 package bg.softuni.pcstore.service;
 
-import org.springframework.stereotype.Service;
+import bg.softuni.pcstore.model.dto.NewProductDTO;
+import jakarta.validation.Valid;
+import org.springframework.web.multipart.MultipartFile;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
-
+    void addNewProduct(@Valid NewProductDTO newProductDTO, String productName, MultipartFile file);
 }

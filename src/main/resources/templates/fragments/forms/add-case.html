@@ -9,9 +9,12 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card bg-transparent registerGlow">
                         <div class="card-body p-5">
-                            <form th:action="@{/admin/add-product/{product}(product = CASE)}"
+                            <form name="productsForm"
+                                  novalidate="novalidate"
+                                  th:action="@{/admin/add-product/{product}(product = CASE)}"
                                   th:method="POST"
-                                  th:object="${newProductDTO}">
+                                  th:object="${newProductDTO}"
+                                  enctype="multipart/form-data">
                                 <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
                                     readonly>CASE</h1>
                                 <div class="form-outline mb-4">
@@ -39,8 +42,7 @@
                                             th:field="*{model}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light"
-                                            required
-                                    />
+                                            required/>
                                     <label class="form-label text-light">Model</label>
                                 </div>
                                 <div class="form-outline mb-4">
@@ -72,7 +74,8 @@
                                     Specifications</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('caseType')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                           th:if="${#fields.hasErrors('caseType')}">Ooopsies! You are trying some
+                                        illegal actions! :)</small>
                                     <select th:field="*{caseType}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">
@@ -87,7 +90,8 @@
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('format')}">Ooopsies! You are trying some illegal actions! :)</small>
+                                           th:if="${#fields.hasErrors('format')}">Ooopsies! You are trying some illegal
+                                        actions! :)</small>
                                     <select th:field="*{format}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">
@@ -110,6 +114,17 @@
                                            th:errorClass="bg-danger"
                                            class="form-control form-control-lg bg-transparent text-light"/>
                                     <label class="form-label text-light">Fans</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('image')}"
+                                           th:errors="*{image}"></small>
+                                    <input type="file"
+                                           th:field="*{image}"
+                                           th:errorClass="bg-danger"
+                                           accept="image/png, image/jpeg"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Image</label>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"

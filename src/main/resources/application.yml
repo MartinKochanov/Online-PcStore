@@ -38,4 +38,4 @@ mail:
 server:
   error:
     whitelabel:
-      enabled: false
+      enabled: true

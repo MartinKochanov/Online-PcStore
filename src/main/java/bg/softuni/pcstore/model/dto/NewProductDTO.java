@@ -1,5 +1,6 @@
 package bg.softuni.pcstore.model.dto;
 
+import bg.softuni.pcstore.model.enums.ColorEnum;
 import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.validation.UniqueModel;
 import jakarta.persistence.EnumType;
@@ -7,6 +8,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -77,6 +79,65 @@ public class NewProductDTO {
 
     @PositiveOrZero(message = "Write speed cannot be negative!")
     private Integer writeSpeed;
+
+    @PositiveOrZero(message = "Dpi cannot be negative!")
+    private Integer dpi;
+
+    @PositiveOrZero(message = "Buttons cannot be negative!")
+    private Integer buttons;
+
+    @Enumerated(EnumType.STRING)
+    private ColorEnum color;
+
+    @Enumerated(EnumType.STRING)
+    private ConnectivityEnum connectivity;
+
+    private MultipartFile image;
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public NewProductDTO setImage(MultipartFile image) {
+        this.image = image;
+        return this;
+    }
+
+    public ConnectivityEnum getConnectivity() {
+        return connectivity;
+    }
+
+    public NewProductDTO setConnectivity(ConnectivityEnum connectivity) {
+        this.connectivity = connectivity;
+        return this;
+    }
+
+    public ColorEnum getColor() {
+        return color;
+    }
+
+    public NewProductDTO setColor(ColorEnum color) {
+        this.color = color;
+        return this;
+    }
+
+    public Integer getDpi() {
+        return dpi;
+    }
+
+    public NewProductDTO setDpi(Integer dpi) {
+        this.dpi = dpi;
+        return this;
+    }
+
+    public Integer getButtons() {
+        return buttons;
+    }
+
+    public NewProductDTO setButtons(Integer buttons) {
+        this.buttons = buttons;
+        return this;
+    }
 
     public DrivesInterfacesEnum getDrivesInterface() {
         return drivesInterface;
@@ -358,4 +419,5 @@ public class NewProductDTO {
         this.memoryType = memoryType;
         return this;
     }
+
 }

@@ -9,11 +9,11 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card bg-transparent registerGlow">
                         <div class="card-body p-5">
-                            <form th:action="@{/admin/add-product/{product}(product = MOUSE)}"
+                            <form th:action="@{/admin/add-product/{product}(product = KEYBOARD)}"
                                   th:method="POST"
                                   th:object="${newProductDTO}">
                                 <h1 class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
-                                    readonly>MOUSE</h1>
+                                    readonly>KEYBOARD</h1>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
                                            th:if="${#fields.hasErrors('manufacturer')}"
@@ -101,28 +101,6 @@
                                         </option>
                                     </select>
                                     <label class="form-label text-light">Connectivity</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('dpi')}"
-                                           th:errors="*{dpi}"></small>
-                                    <input type="number"
-                                           min="0"
-                                           th:field="*{dpi}"
-                                           th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">DPI</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <small class="form-label text-danger"
-                                           th:if="${#fields.hasErrors('buttons')}"
-                                           th:errors="*{buttons}"></small>
-                                    <input type="number"
-                                           min="0"
-                                           th:field="*{buttons}"
-                                           th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light"/>
-                                    <label class="form-label text-light">Buttons</label>
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     <input type="submit"
