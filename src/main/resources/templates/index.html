@@ -16,141 +16,126 @@
         </div>
     </div>
 </div>
-<!--<div class="text-center">-->
-<!--    <h1 class=" text-uppercase mt-5 homeHeaders">-->
-<!--       Gaming Computers-->
-<!--    </h1>-->
-<!--</div>-->
-<!--<div class="container-fluid mt-3">-->
-<!--    <div class="row row-cols-1 mt-5">-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">-->
-<!--                    <img src="/images/case.webp"-->
-<!--                         class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            Cases-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">-->
-<!--                    <img src="/images/motherboard.png" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center fs">-->
-<!--                            Motherboards-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">-->
-<!--                    <img src="/images/CPU.webp" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            CPU-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">-->
-<!--                    <img src="/images/cooler.png" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            Coolers-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--</div>-->
-
-<!--    <div class="text-center">-->
-<!--        <h1 class=" text-uppercase mt-5 homeHeaders">-->
-<!--            Laptops-->
-<!--        </h1>-->
-<!--</div>-->
-<!--<div class="container-fluid mt-3">-->
-<!--    <div class="row row-cols-1 mt-5">-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">-->
-<!--                    <img src="/images/graphic-card-removebg-preview.png"-->
-<!--                         class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            Graphic Cards-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">-->
-<!--                    <img src="/images/ram.png" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center fs">-->
-<!--                            RAM-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">-->
-<!--                    <img src="/images/CPU.webp" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            CPU-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">-->
-<!--            <a class="text-decoration-none" th:href="@{/register}">-->
-<!--                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">-->
-<!--                    <img src="/images/cooler.png" class="card-img-top">-->
-<!--                    <div class="card-body">-->
-<!--                        <h3 class="card-title text-uppercase text-light text-center">-->
-<!--                            Coolers-->
-<!--                        </h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--</div>-->
-
-<div class="container-fluid mt-3">
-    <div th:each="product : ${products}" class="col-12 col-xl-2 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
-                <img alt="image" th:src="@{'data:image/jpeg;base64,'+${product.generateBase64Image()}}"
-                     class="card-img-top">
-                <div class="card-body">
-                    <h3 class="card-title text-uppercase text-light text-center"
-                        th:text="${product.getShortDescription()}">
-
-                    </h3>
-                </div>
-            </div>
-
-    </div>
+<div class="text-center">
+    <h1 class=" text-uppercase mt-5 homeHeaders">
+       Gaming Computers
+    </h1>
 </div>
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 mt-5">
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/case.webp"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Cases
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/motherboard.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center fs">
+                            Motherboards
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/CPU.webp" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            CPU
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/cooler.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Coolers
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+    <div class="text-center">
+        <h1 class=" text-uppercase mt-5 homeHeaders">
+            Laptops
+        </h1>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row row-cols-1 mt-5">
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/graphic-card-removebg-preview.png"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Graphic Cards
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
+                    <img src="/images/ram.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center fs">
+                            RAM
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/CPU.webp" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            CPU
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/register}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/cooler.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Coolers
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
 
 </body>
 </html>

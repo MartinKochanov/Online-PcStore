@@ -7,9 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     Optional<ProductEntity> findByModel(String value);
 
     List<ProductEntity> findByTypeProduct(ProductTypeEnum type);
+
+    void deleteByUuid(UUID uuid);
 }

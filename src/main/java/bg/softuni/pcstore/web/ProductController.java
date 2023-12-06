@@ -6,15 +6,16 @@ import bg.softuni.pcstore.model.dto.NewProductDTO;
 import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.service.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -44,21 +45,32 @@ public class ProductController {
                                    @Valid @ModelAttribute("newProductDTO") NewProductDTO newProductDTO,
                                    BindingResult bindingResult
     ) {
-
         if (bindingResult.hasErrors()) {
             return getAddProductView(product);
         }
-
         productService.addNewProduct(newProductDTO, product);
-
-
         return new ModelAndView("redirect:/");
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @DeleteMapping("/admin/delete-product/{uuid}")
+    public ModelAndView deleteProduct(@PathVariable("uuid") UUID uuid) {
+        productService.deleteProduct(uuid);
+        return new ModelAndView("redirect:/admin/menage-products");
+    }
+
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/admin/menage-products")
+    public ModelAndView menageProducts(@PageableDefault(size = 3, sort = "uuid")Pageable pageable) {
+        ModelAndView modelAndView = new ModelAndView("menage-products");
+        modelAndView.addObject("products", productService.allProducts(pageable));
+        return modelAndView;
+    }
 
     private static ModelAndView getAddProductView(String product) {
         if (!ProductTypeEnum.contains(product)) {
-            throw new ObjectNotFoundException("No suck product found!");
+            throw new ObjectNotFoundException("No such product found!");
         }
         ModelAndView modelAndView = new ModelAndView("add-product");
         modelAndView.addObject("product", product);
@@ -74,10 +86,9 @@ public class ProductController {
         modelAndView.addObject("ssdTypes", SsdTypesEnum.values());
         modelAndView.addObject("colors", ColorEnum.values());
         modelAndView.addObject("connectivity", ConnectivityEnum.values());
+        modelAndView.addObject("videoMemoryTypes", VideoMemoryTypeEnum.values());
 
 
         return modelAndView;
     }
-
-    //TODO: Make restock and menage the roles functionalities
 }

@@ -5,8 +5,11 @@ import bg.softuni.pcstore.model.enums.ProductTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.annotations.JdbcTypeCode;
 
 import java.math.BigDecimal;
+import java.sql.Types;
+import java.util.UUID;
 
 @Entity
 @Table(name = "products")
@@ -24,10 +27,14 @@ public class ProductEntity extends BaseEntity {
     @NotNull
     private BigDecimal price;
     @NotNull
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
+    @NotNull
+    @JdbcTypeCode(Types.VARCHAR)
+    private UUID uuid;
 
     public byte[] getImage() {
         return image;
@@ -86,6 +93,15 @@ public class ProductEntity extends BaseEntity {
 
     public ProductEntity setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public ProductEntity setUuid(UUID uuid) {
+        this.uuid = uuid;
         return this;
     }
 

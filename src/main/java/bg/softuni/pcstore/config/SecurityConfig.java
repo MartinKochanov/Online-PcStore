@@ -24,7 +24,8 @@ public class SecurityConfig {
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/", "/login", "/register","/login-error", "/admin/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/activation", "/activation/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/activation", "/activation/**","/admin/menage-products").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/admin/delete-product/**").permitAll()
                         .requestMatchers("/success-registration").permitAll()
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated())

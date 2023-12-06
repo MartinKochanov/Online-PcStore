@@ -1,15 +1,14 @@
 package bg.softuni.pcstore.model.entity;
 
 import bg.softuni.pcstore.model.enums.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "specifications")
 public class SpecificationEntity extends BaseEntity {
+    @OneToOne(mappedBy = "specifications")
+    ProductEntity product;
     @Enumerated(EnumType.STRING)
     private CaseTypeEnum caseType;
     @Enumerated(EnumType.STRING)
@@ -83,6 +82,10 @@ public class SpecificationEntity extends BaseEntity {
     public SpecificationEntity setDpi(Integer dpi) {
         this.dpi = dpi;
         return this;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
     }
 
     public Integer getButtons() {

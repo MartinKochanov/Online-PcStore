@@ -31,7 +31,7 @@
            th:if="${#fields.hasErrors('price')}"
            th:errors="*{price}"></small>
     <input type="number"
-           min="0"
+           step="0.01"
            th:field="*{price}"
            th:errorClass="bg-danger"
            class="form-control form-control-lg bg-transparent text-light"

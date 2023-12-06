@@ -11,7 +11,8 @@
                         <div class="card-body p-5">
                             <form th:action="@{/admin/add-product/{product}(product = GRAPHIC_CARD)}"
                                   th:method="POST"
-                                  th:object="${newProductDTO}">
+                                  th:object="${newProductDTO}"
+                                  enctype="multipart/form-data">
                                 <h1 class="bg-transparent form-control border-0 form-control-lg text-uppercase text-center text-light mb-5 disabled fs-3"
                                        th:text="'GRAPHIC CARD'"
                                        readonly/>
@@ -38,7 +39,7 @@
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
                                            th:if="${#fields.hasErrors('videoMemoryType')}">Ooopsies! You are trying some illegal actions! :)</small>
-                                    <select id="format"
+                                    <select
                                             th:field="*{videoMemoryType}"
                                             th:errorClass="bg-danger"
                                             class="form-control form-control-lg bg-transparent text-light">

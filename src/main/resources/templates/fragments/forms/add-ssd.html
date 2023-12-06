@@ -11,7 +11,8 @@
                         <div class="card-body p-5">
                             <form th:action="@{/admin/add-product/{product}(product = SSD)}"
                                   th:method="POST"
-                                  th:object="${newProductDTO}">
+                                  th:object="${newProductDTO}"
+                                  enctype="multipart/form-data">
                                 <h1 th:text="SSD" class="bg-transparent border-0 text-uppercase text-center text-light mb-5 fs-3"
                                     readonly></h1>
                                 <div th:replace="~{fragments/base-poduct-properties}"></div>
