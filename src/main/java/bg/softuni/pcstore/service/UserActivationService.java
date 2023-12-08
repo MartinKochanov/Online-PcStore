@@ -6,4 +6,6 @@ public interface UserActivationService {
     void userRegistered(UserRegistrationEvent event);
 
     String createVerificationToken(String username);
+
+    void cleanUpLinks();
 }

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{/fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="container-fluid">
+    <div class="row mt-5  borderGlow">
+        <div class="col-6 col-xl-3 col-lg-4 col-md-5 col-sm-6 mt-5 bg-transparent border-5 ">
+            <img alt="image" th:src="@{'data:image/jpeg;base64,'+${product.generateBase64Image()}}"
+                 class="img-fluid mb-5">
+        </div>
+        <div class="col-6 col-xl-9 col-lg-8 col-md-7 col-sm-6 mt-5">
+            <h1 class="fs-1 text-light text-center mb-5" th:text="${product.productShortDescription()}"></h1>
+            <div class="d-inline-block col-4 fs-1 text-light text-end" th:text="Price"></div>
+            <div class="d-inline-block col-4 fs-1 text-light text-end pe-5 mb-4"
+                 th:text="${product.price} + '&euro;'"></div>
+            <div class="fs-1 text-success text-center mt-4" th:text="'In Stock' + '&#10004;'"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-5 col-12 text-light text-center fs-1" th:text="'Description'"></div>
+        <div th:text="${product.description}" class="col-12 mt-5 bg-transparent text-light fs-5 border-5">
+        </div>
+    </div>
+    <div class="row">
+        <div class="mt-5 col-12 text-light text-center fs-1" th:text="'Specifications'"></div>
+        <table class="table border borderGlow mt-5">
+            <tbody>
+            <tr>
+                <td th:text="'Manufacturer'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.manufacturer.name()} "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr>
+                <td th:text="'Model'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.model} "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.caseType != null}">
+                <td th:text="'Case Type'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.caseType.getName()} "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.format != null}">
+                <td th:text="'Format'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.format.getName()} "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.fans != null}">
+                <td th:text="'Fan spaces'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.fans} "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.weight != null}">
+                <td th:text="'Weight'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.weight} + 'kg' "
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.cpuSocket != null}">
+                <td th:text="'Socket'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.cpuSocket.getName()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.memorySlots != null}">
+                <td th:text="'Slots'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.memorySlots}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.maxMemory != null}">
+                <td th:text="'Max Memory'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.maxMemory} + 'gb'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.memoryType != null}">
+                <td th:text="'Memory Type'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.memoryType.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.graphicCardSlot != null}">
+                <td th:text="'Graphic Card Slot'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.graphicCardSlot.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.videoMemoryType != null}">
+                <td th:text="'Video Memory Type'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.videoMemoryType.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.capacity != null}">
+                <td th:text="'Capacity'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.capacity} + 'gb'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.power != null}">
+                <td th:text="'Power'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.power} + 'W'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.efficiency != null}">
+                <td th:text="'Eficiency'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.efficiency} + '%'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.driveInterface != null}">
+                <td th:text="'Drive Interface'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.driveInterface.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.ssdType != null}">
+                <td th:text="'Type SSD'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.ssdType.getName()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.readSpeed != null}">
+                <td th:text="'Read Speed'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.readSpeed} + ' MB/s'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.writeSpeed != null}">
+                <td th:text="'Write Speed'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.writeSpeed} + ' MB/s'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.dpi != null}">
+                <td th:text="'DPI'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.dpi}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.buttons != null}">
+                <td th:text="'Buttons count'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.buttons}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.color != null}">
+                <td th:text="'Color'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.color.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.connectivity != null}">
+                <td th:text="'Connectivity'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.connectivity.name()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.resolution != null}">
+                <td th:text="'Resolution'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.resolution.getResolution()}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.cashMemory != null}">
+                <td th:text="'Cash'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.cashMemory + 'mb'}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center text-uppercase"></td>
+            </tr>
+            <tr th:if="${product.specifications.frequency != null}">
+                <td th:text="'Frequency'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.frequency} + ' GHz'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+            <tr th:if="${product.specifications.boost != null}">
+                <td th:text="'Boost'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.boost} + ' GHz'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+            <tr th:if="${product.specifications.cores != null}">
+                <td th:text="'Cores'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.cores}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+            <tr th:if="${product.specifications.threads != null}">
+                <td th:text="'Threads'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.threads}"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+            <tr th:if="${product.specifications.rotationSpeed != null}">
+                <td th:text="'Rotation Speed'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.rotationSpeed} + 'rpm'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+            <tr th:if="${product.specifications.coolingType != null}">
+                <td th:text="'Cooling Type'"
+                    class="border-end fs-3 pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+                <td th:text="${product.specifications.coolingType.getName()} + 'rpm'"
+                    class="pt-5 fs-3 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 text-light text-center"></td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -48,7 +48,7 @@ public class ProductEntity extends BaseEntity {
         return Base64.encodeBase64String(this.image);
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private SpecificationEntity specifications;
 
     public ProductTypeEnum getTypeProduct() {
@@ -116,4 +116,5 @@ public class ProductEntity extends BaseEntity {
     public String getShortDescription() {
         return this.manufacturer + " " + this.model;
     }
+
 }

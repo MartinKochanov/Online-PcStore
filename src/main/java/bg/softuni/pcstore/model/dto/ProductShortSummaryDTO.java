@@ -6,7 +6,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public class ProductShortSummaryDto {
+public class ProductShortSummaryDTO {
     private ManufacturerEnum manufacturer;
 
     private String model;
@@ -17,11 +17,12 @@ public class ProductShortSummaryDto {
 
     private UUID uuid;
 
+
     public UUID getUuid() {
         return uuid;
     }
 
-    public ProductShortSummaryDto setUuid(UUID uuid) {
+    public ProductShortSummaryDTO setUuid(UUID uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -30,7 +31,7 @@ public class ProductShortSummaryDto {
         return manufacturer;
     }
 
-    public ProductShortSummaryDto setManufacturer(ManufacturerEnum manufacturer) {
+    public ProductShortSummaryDTO setManufacturer(ManufacturerEnum manufacturer) {
         this.manufacturer = manufacturer;
         return this;
     }
@@ -39,7 +40,7 @@ public class ProductShortSummaryDto {
         return model;
     }
 
-    public ProductShortSummaryDto setModel(String model) {
+    public ProductShortSummaryDTO setModel(String model) {
         this.model = model;
         return this;
     }
@@ -48,7 +49,7 @@ public class ProductShortSummaryDto {
         return price;
     }
 
-    public ProductShortSummaryDto setPrice(BigDecimal price) {
+    public ProductShortSummaryDTO setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -57,11 +58,14 @@ public class ProductShortSummaryDto {
         return image;
     }
 
-    public ProductShortSummaryDto setImage(byte[] image) {
+    public ProductShortSummaryDTO setImage(byte[] image) {
         this.image = image;
         return this;
     }
     public String generateBase64Image() {
         return Base64.encodeBase64String(this.image);
+    }
+    public String productShortDescription() {
+        return this.manufacturer.name() + " " + this.model + " ";
     }
 }

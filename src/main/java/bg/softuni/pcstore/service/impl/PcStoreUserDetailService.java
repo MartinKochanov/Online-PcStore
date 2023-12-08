@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.stream.Collectors;
-
 public class PcStoreUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -30,7 +28,7 @@ public class PcStoreUserDetailService implements UserDetailsService {
         return User
                 .withUsername(userEntity.getUsername())
                 .password(userEntity.getPassword())
-                .authorities(userEntity.getRoles().stream().map(PcStoreUserDetailService::map).collect(Collectors.toSet()))
+                .authorities(map(userEntity.getRole()))
                 .disabled(userEntity.isDisabled())
                 .build();
     }

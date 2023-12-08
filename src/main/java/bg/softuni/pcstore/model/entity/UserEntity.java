@@ -27,20 +27,21 @@ public class UserEntity extends BaseEntity {
     @NotNull
     private String password;
     private boolean disabled;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH})
-    private Set<RoleEntity> roles;
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    private VerificationToken verificationToken;
+    @ManyToOne
+    private RoleEntity role;
 
     public UserEntity() {
-        this.roles = new HashSet<>();
         this.disabled = true;
     }
 
-    public Set<RoleEntity> getRoles() {
-        return roles;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public UserEntity setRoles(Set<RoleEntity> roles) {
-        this.roles = roles;
+    public UserEntity setRole(RoleEntity role) {
+        this.role = role;
         return this;
     }
 
@@ -95,6 +96,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setDisabled(boolean disabled) {
         this.disabled = disabled;
+        return this;
+    }
+
+    public VerificationToken getVerificationToken() {
+        return verificationToken;
+    }
+
+    public UserEntity setVerificationToken(VerificationToken verificationToken) {
+        this.verificationToken = verificationToken;
         return this;
     }
 }

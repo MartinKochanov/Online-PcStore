@@ -3,40 +3,44 @@
 <head th:replace="~{/fragments/head}"></head>
 <body>
 <header th:replace="~{fragments/navbar}"></header>
-<h1 class="text-light text-center pb-3">Available products</h1>
-
-<form class="text-center w-100" th:action="@{/admin/menage-products}">Search:
+<form class="mt-5 text-center text-light w-100" th:action="@{/admin/menage-users}">
     <input class="form-control-lg form-control-lg bg-transparent text-light border-light w-50" type="text"
-           th:value="${keyword}" id="keyword" name="keyword"/>&nbsp;
+           />&nbsp;
     <input class="btn-dark text-light btn-lg" type="submit" value="Search"/> &nbsp;
 </form>
+
 <div class="row-cols-auto">
     <table class="table mt-5">
         <thead>
         <tr class="text-light text-center fs-2">
-            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Manufacturer</th>
-            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Model</th>
-            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Image</th>
+            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Full Name</th>
+            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Username</th>
+            <th scope="col" class="col-xl-4 col-lg-4 col-md-6 col-sm-6 pb-5">Roles</th>
             <th scope="col" class=" col-xl-4 col-lg-4 col-md-6 col-sm-6 pe-5 pb-5">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-5 text-light fs-4"
-            th:each="product : ${products.getContent()}">
-            <td th:text="${product.manufacturer.name()}"
+            th:each="user : ${users.getContent()}">
+            <td th:text="${user.lastName} +' '+ ${user.firstName}"
                 class="pt-5 col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5 text-light text-center"></td>
-            <td th:text="${product.model}"
+            <td th:text="${user.username}"
                 class="pt-5 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-5 text-light text-center text-uppercase"></td>
-            <td class=" col-12 xl-4 col-lg-4 col-md-6 col-sm-6 mt-5  ps-5 text-light text-center"><img alt="image"
-                                                                                                       th:src="@{'data:image/jpeg;base64,'+${product.generateBase64Image()}}"
-                                                                                                       height="150px">
+            <td th:text="${user.role}"
+                class="pt-5 col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-5 text-light text-center text-uppercase"></td>
             </td>
             <td class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 mt-5 pe-5 pt-5 text-light text-center">
                 <form
-                        th:action="@{/admin/delete-product/{uuid}(uuid = ${product.uuid})}"
+                        th:action="@{/admin/delete-user/{username}(username = ${user.username})}"
                         th:method="DELETE"
                         class="btn-lg borderGlow">
                     <input type="submit" value="Delete" class="btn btn-sm text-light">
+                </form>
+                <form
+                        th:action="@{/admin/update-user/{username}(username = ${user.username})}"
+                        th:method="PATCH"
+                        class="btn-lg borderGlow mt-3">
+                    <input type="submit" value="Make admin" class="btn btn-sm text-light">
                 </form>
             </td>
         </tr>
@@ -47,37 +51,37 @@
     <nav aria-label="Page navigation" class="bg-transparent">
         <ul class="pagination justify-content-center bg-transparent">
             <li class="page-item bg-transparent text-decoration-none text-light"
-                th:classappend="${products.isFirst() ? 'disabled' : ''}">
-                <a th:if="${products.isFirst()}" class="page-link bg-transparent text-decoration-none text-light"
+                th:classappend="${users.isFirst() ? 'disabled' : ''}">
+                <a th:if="${users.isFirst()}" class="page-link bg-transparent text-decoration-none text-light"
                    href="#" aria-label="First"><span aria-hidden="true">&laquo;</span></a>
-                <a th:unless="${products.isFirst()}" class="page-link bg-transparent text-decoration-none text-light"
-                   th:href="@{/admin/menage-products(size=0)}" aria-label="First"><span
+                <a th:unless="${users.isFirst()}" class="page-link bg-transparent text-decoration-none text-light"
+                   th:href="@{/admin/menage-users(size=0)}" aria-label="First"><span
                         aria-hidden="true">&laquo;</span></a>
             </li>
 
             <li class="page-item bg-transparent text-decoration-none text-light"
                 th:classappend="${currentPage == 0 ? 'disabled' : ''}">
                 <a class="page-link bg-transparent text-decoration-none text-light"
-                   th:href="@{/admin/menage-products(page=${currentPage - 1})}">Previous</a>
+                   th:href="@{/admin/menage-users(page=${currentPage - 1})}">Previous</a>
             </li>
             <li class="page-item bg-transparent text-decoration-none text-light"
-                th:each="i : ${#numbers.sequence(0, products.totalPages - 1)}"
+                th:each="i : ${#numbers.sequence(0, users.totalPages - 1)}"
                 th:classappend="${currentPage == i ? 'active' : ''}">
                 <a class="page-link bg-transparent text-decoration-none text-light"
-                   th:href="@{/admin/menage-products(page=${i})}" th:text="${i + 1}"></a>
+                   th:href="@{/admin/menage-users(page=${i})}" th:text="${i + 1}"></a>
             </li>
             <li class="page-item bg-transparent text-decoration-none text-light"
-                th:classappend="${currentPage == products.totalPages - 1 ? 'disabled' : ''}">
+                th:classappend="${currentPage == users.totalPages - 1 ? 'disabled' : ''}">
                 <a class="page-link bg-transparent text-decoration-none text-light"
-                   th:href="@{/admin/menage-products(page=${currentPage + 1})}">Next</a>
+                   th:href="@{/admin/menage-users(page=${currentPage + 1})}">Next</a>
             </li>
 
             <li class="page-item bg-transparent text-decoration-none text-light"
-                th:classappend="${products.isLast() ? 'disabled' : ''}">
-                <a th:if="${products.isLast()}" class="page-link bg-transparent text-decoration-none text-light"
+                th:classappend="${users.isLast() ? 'disabled' : ''}">
+                <a th:if="${users.isLast()}" class="page-link bg-transparent text-decoration-none text-light"
                    href="#" aria-label="Last"><span aria-hidden="true">&raquo;</span></a>
-                <a th:unless="${products.isLast()}" class="page-link bg-transparent text-decoration-none text-light"
-                   th:href="@{/admin/menage-products(size=${products.getSize()}, page=${products.getTotalPages() - 1})}"
+                <a th:unless="${users.isLast()}" class="page-link bg-transparent text-decoration-none text-light"
+                   th:href="@{/admin/menage-users(size=${users.getSize()}, page=${users.getTotalPages() - 1})}"
                    aria-label="Last"><span aria-hidden="true">&raquo;</span></a>
             </li>
         </ul>

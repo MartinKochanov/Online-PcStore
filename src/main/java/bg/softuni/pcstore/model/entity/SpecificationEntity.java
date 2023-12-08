@@ -7,19 +7,17 @@ import jakarta.validation.constraints.PositiveOrZero;
 @Entity
 @Table(name = "specifications")
 public class SpecificationEntity extends BaseEntity {
-    @OneToOne(mappedBy = "specifications")
-    ProductEntity product;
     @Enumerated(EnumType.STRING)
     private CaseTypeEnum caseType;
     @Enumerated(EnumType.STRING)
     private FormatEnum format;
     private Integer fans;
-    private Integer weight;
+    private Double weight;
     @Enumerated(EnumType.STRING)
     private CpuSocketTypesEnum cpuSocket;
-
+    @PositiveOrZero
     private Integer memorySlots;
-
+    @PositiveOrZero
     private Integer maxMemory;
     @Enumerated(EnumType.STRING)
     private TypeMemoryEnum memoryType;
@@ -65,7 +63,6 @@ public class SpecificationEntity extends BaseEntity {
         this.connectivity = connectivity;
         return this;
     }
-
     public ColorEnum getColor() {
         return color;
     }
@@ -74,7 +71,6 @@ public class SpecificationEntity extends BaseEntity {
         this.color = color;
         return this;
     }
-
     public Integer getDpi() {
         return dpi;
     }
@@ -84,9 +80,6 @@ public class SpecificationEntity extends BaseEntity {
         return this;
     }
 
-    public ProductEntity getProduct() {
-        return product;
-    }
 
     public Integer getButtons() {
         return buttons;
@@ -297,11 +290,11 @@ public class SpecificationEntity extends BaseEntity {
         return this;
     }
 
-    public Integer getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public SpecificationEntity setWeight(Integer weight) {
+    public SpecificationEntity setWeight(Double weight) {
         this.weight = weight;
         return this;
     }
@@ -341,5 +334,4 @@ public class SpecificationEntity extends BaseEntity {
         this.memoryType = memoryType;
         return this;
     }
-    //TODO: Add the rest of specifications
 }

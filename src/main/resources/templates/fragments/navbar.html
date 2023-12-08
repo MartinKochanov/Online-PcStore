@@ -4,7 +4,7 @@
 </head>
 <body>
 <header id="header">
-    <div th:fragment="navbar" class="container-fluid">
+    <div th:fragment="navbar" class="container-fluid w-100">
         <nav class="navbar navbar-expand-xl navbar-dark">
             <div class="container fs-4">
                 <a class="navbar-brand fs-4" th:href="@{/}"><i class="bi bi-laptop"></i>PcStore</a>
@@ -16,14 +16,26 @@
                 <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                     <ul class="navbar-nav text-center">
                         <li class="nav-item dropdown mx-3">
-                            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Categories
+                            <a class="nav-link dropdown-toggle"
+                               role="button" id="dropdownMenuLink"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Products
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Cases</a></li>
-                                <li><a class="dropdown-item" href="#">Motherboards</a></li>
-                                <li><a class="dropdown-item" href="#">CPU</a></li>
-                                <li><a class="dropdown-item" href="#">Coolers</a></li>
+                                <li><a class="dropdown-item fs-5 fw-bolder" th:href="@{/products/search/{product}(product = all)}">All products</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = case)}">Cases</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = motherboard)}">Motherboards</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = cpu)}">CPU</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = cooler)}">Coolers</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = graphic_card)}">Graphic cards</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = ram)}">RAM</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = fan)}">Fans</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = power_supply)}">Power supplies</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = hdd)}">HDD</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = ssd)}">SSD</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = mouse)}">Mice</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/search/{product}(product = keyboard)}">Keyboards</a></li>
                             </ul>
                         </li>
                         <li class="nav-item  mx-3">
@@ -39,7 +51,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" th:href="@{/admin/add-products}">Add New Product</a></li>
                                 <li><a class="dropdown-item" th:href="@{/admin/menage-products}">Menage products</a></li>
-                                <li><a class="dropdown-item" href="#">Menage roles</a></li>
+                                <li><a class="dropdown-item" th:href="@{/admin/menage-users}">Menage roles</a></li>
                             </ul>
                         </li>
 
@@ -48,6 +60,9 @@
                         </li>
                         <li class="nav-item  mx-3">
                             <a class="nav-link active" sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a>
+                        </li>
+                        <li class="nav-item  mx-3" sec:authorize="isAuthenticated()">
+                            <p class="nav-link disabled "> Hello, <span sec:authentication="name"></span></p>
                         </li>
                         <li class="nav-item mx-3" sec:authorize="isAuthenticated()">
                             <form th:method="post"
@@ -60,8 +75,9 @@
             </div>
         </nav>
 
-        <form class="d-flex mx-auto pb-3">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex mx-auto pb-3 w-75" th:action="@{/products/search-product}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                   th:value="${keyword}" id="keyword" name="keyword">
             <button class="btn btn-outline-light" type="submit">Search</button>
         </form>
     </div>

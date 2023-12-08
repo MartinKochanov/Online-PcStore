@@ -21,14 +21,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity.authorizeHttpRequests(
-                authorizeRequests -> authorizeRequests
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/", "/login", "/register","/login-error", "/admin/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/activation", "/activation/**","/admin/menage-products").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/admin/delete-product/**").permitAll()
-                        .requestMatchers("/success-registration").permitAll()
-                        .requestMatchers("/error").permitAll()
-                        .anyRequest().authenticated())
+                        authorizeRequests -> authorizeRequests
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/", "/login", "/register", "/login-error", "/admin/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/activation", "/activation/**", "/admin/menage-products").permitAll()
+                                .requestMatchers("/products/search/**", "/products/details/**","/products/search-product/**","/products/search/all**").permitAll()
+                                .requestMatchers("/success-registration").permitAll()
+                                .requestMatchers("/error").permitAll()
+                                .anyRequest().authenticated())
                 .formLogin(
                         formLogin -> formLogin
                                 .loginPage("/login")

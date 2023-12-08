@@ -1,22 +1,22 @@
 package bg.softuni.pcstore.service;
 
 import bg.softuni.pcstore.model.dto.NewProductDTO;
-import bg.softuni.pcstore.model.dto.ProductShortSummaryDto;
-import bg.softuni.pcstore.model.entity.ProductEntity;
+import bg.softuni.pcstore.model.dto.ProductDetailsDTO;
+import bg.softuni.pcstore.model.dto.ProductShortSummaryDTO;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
 
     void addNewProduct(@Valid NewProductDTO newProductDTO, String productName);
 
-    Page<ProductShortSummaryDto> allProducts(Pageable pageable);
+    Page<ProductShortSummaryDTO> allProducts(Pageable pageable, String keyword);
 
     void deleteProduct(UUID uuid);
 
 
+    ProductDetailsDTO getProductDetails(UUID uuid);
 }

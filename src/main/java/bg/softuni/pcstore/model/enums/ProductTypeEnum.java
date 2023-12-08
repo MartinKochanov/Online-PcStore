@@ -15,10 +15,10 @@ public enum ProductTypeEnum {
     MOUSE,
     KEYBOARD;
 
-    public static boolean contains(String product) {
+    public static boolean containsIgnoreCase(String product) {
 
         for (ProductTypeEnum v  : ProductTypeEnum.values()) {
-            if (v.name().equals(product)) {
+            if (v.name().equalsIgnoreCase(product)) {
                 return true;
             }
         }

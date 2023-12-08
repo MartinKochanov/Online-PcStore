@@ -7,6 +7,7 @@ import bg.softuni.pcstore.model.enums.*;
 import bg.softuni.pcstore.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -62,14 +63,46 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin/menage-products")
-    public ModelAndView menageProducts(@PageableDefault(size = 3, sort = "uuid")Pageable pageable) {
+    public ModelAndView menageProducts(@PageableDefault(size = 3, sort = "uuid") Pageable pageable,
+                                       @Param("keyword") String keyword) {
         ModelAndView modelAndView = new ModelAndView("menage-products");
-        modelAndView.addObject("products", productService.allProducts(pageable));
+        modelAndView.addObject("products", productService.allProducts(pageable, keyword));
+        modelAndView.addObject("currentPage", pageable.getPageNumber());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/products/search/{product}")
+    public ModelAndView search(@PageableDefault(size = 8, sort = "uuid") Pageable pageable,
+                               @PathVariable("product") String keyword) {
+        ModelAndView modelAndView = new ModelAndView("all-products");
+        modelAndView.addObject("products", productService.allProducts(pageable, keyword));
+        modelAndView.addObject("currentPage", pageable.getPageNumber());
+        productService.allProducts(pageable, keyword);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/products/search-product")
+    public ModelAndView searchCertainProduct(@PageableDefault(size = 8, sort = "uuid") Pageable pageable,
+                               @Param("product") String keyword) {
+        ModelAndView modelAndView = new ModelAndView("all-products");
+        modelAndView.addObject("products", productService.allProducts(pageable, keyword));
+        modelAndView.addObject("currentPage", pageable.getPageNumber());
+        productService.allProducts(pageable, keyword);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/products/details/{uuid}")
+    public ModelAndView productDetails(@PathVariable("uuid") UUID uuid) {
+        ModelAndView modelAndView = new ModelAndView("product-details");
+        modelAndView.addObject("product", productService.getProductDetails(uuid));
         return modelAndView;
     }
 
     private static ModelAndView getAddProductView(String product) {
-        if (!ProductTypeEnum.contains(product)) {
+        if (!ProductTypeEnum.containsIgnoreCase(product)) {
             throw new ObjectNotFoundException("No such product found!");
         }
         ModelAndView modelAndView = new ModelAndView("add-product");
