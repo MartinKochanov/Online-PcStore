@@ -11,20 +11,25 @@
             <p class="display-4 text-light text-start fw-bold fs-1 mb-4"> Welcome to Gamer Hub!</p>
             <p class="display-4 text-light text-start fw-bold fs-1 mb-2">Easily assemble your own gaming PC </p>
             <p class="display-4 text-light text-start fw-bold fs-1 mb-2">with the help of our professionals</p>
-            <p class="display-4 text-light text-start fw-bold fs-1 mb-5">or find whatever you are searching for!</p>
-            <p class="display-4 text-light text-start fw-bold fs-1 mb-5 pb-5">Everything you need you can found here!</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-5">or find whatever you are searching for.</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-5 pb-5">Everything you need you can find here!</p>
+            <p class="display-4 text-light text-start fw-bold fs-1 mb-5 pb-5">We collected the best products on the
+                market for fair price so hop right in!</p>
+
         </div>
     </div>
 </div>
 <div class="text-center">
-    <h1 class=" text-uppercase mt-5 homeHeaders">
-       Gaming Computers
-    </h1>
+    <a class="text-center" th:href="@{/products/search/{product}(product = all)}">
+        <div class="btn btn-lg borderGlow text-uppercase mt-5 fs-2 homeHeaders">
+            See all products!
+        </div>
+    </a>
 </div>
 <div class="container-fluid mt-3">
     <div class="row row-cols-1 mt-5">
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = case)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
                     <img src="/images/case.webp"
                          class="card-img-top">
@@ -37,7 +42,7 @@
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = motherboard)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
                     <img src="/images/motherboard.png" class="card-img-top">
                     <div class="card-body">
@@ -49,7 +54,7 @@
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = cpu)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
                     <img src="/images/CPU.webp" class="card-img-top">
                     <div class="card-body">
@@ -61,7 +66,7 @@
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = cooler)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
                     <img src="/images/cooler.png" class="card-img-top">
                     <div class="card-body">
@@ -75,16 +80,10 @@
     </div>
 
 </div>
-
-    <div class="text-center">
-        <h1 class=" text-uppercase mt-5 homeHeaders">
-            Laptops
-        </h1>
-</div>
 <div class="container-fluid mt-3">
     <div class="row row-cols-1 mt-5">
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = graphic_card)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
                     <img src="/images/graphic-card-removebg-preview.png"
                          class="card-img-top">
@@ -97,7 +96,7 @@
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = ram)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow">
                     <img src="/images/ram.png" class="card-img-top">
                     <div class="card-body">
@@ -109,31 +108,78 @@
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = fan)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
-                    <img src="/images/CPU.webp" class="card-img-top">
+                    <img src="/images/fan.png" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title text-uppercase text-light text-center">
-                            CPU
+                            FANS
                         </h3>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
-            <a class="text-decoration-none" th:href="@{/register}">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = power_supply)}">
                 <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
-                    <img src="/images/cooler.png" class="card-img-top">
+                    <img src="/images/power.png" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title text-uppercase text-light text-center">
-                            Coolers
+                            Power Supplies
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = hdd)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/hdd.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            HDD
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = ssd)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/ssd.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            SSD
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = mouse)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/mouse.webp" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            Mice
+                        </h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-6 mt-5">
+            <a class="text-decoration-none" th:href="@{/products/search/{product}(product = keyboard)}">
+                <div class="card mx-4 mb-5 bg-transparent border-5 cardGlow" href="#">
+                    <img src="/images/keyboard.png" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title text-uppercase text-light text-center">
+                            KEYBOARD
                         </h3>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-
 </div>
 
 

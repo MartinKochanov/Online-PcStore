@@ -1,6 +1,8 @@
 package bg.softuni.pcstore.web;
 
+import bg.softuni.pcstore.model.dto.ReCaptchaResponseDto;
 import bg.softuni.pcstore.model.dto.UserRegisterDto;
+import bg.softuni.pcstore.service.ReCaptchaService;
 import bg.softuni.pcstore.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
@@ -11,18 +13,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
 
+    private final ReCaptchaService reCaptchaService;
 
-    public UserController(UserService userService) {
+
+    public UserController(UserService userService, ReCaptchaService reCaptchaService) {
         this.userService = userService;
 
 
+        this.reCaptchaService = reCaptchaService;
     }
 
     @GetMapping("/register")
@@ -33,13 +37,23 @@ public class UserController {
 
     @PostMapping("/register")
     public ModelAndView register(@ModelAttribute("userRegisterDto") @Valid UserRegisterDto userRegisterDto,
-                                 BindingResult bindingResult, RedirectAttributes ra) {
+                                 BindingResult bindingResult,
+                                 @RequestParam("g-recaptcha-response") String reCaptchaResponse) {
 
         if (bindingResult.hasErrors()) {
             return new ModelAndView("register");
         }
+
+        boolean isBot = !reCaptchaService.
+                verify(reCaptchaResponse)
+                .map(ReCaptchaResponseDto::isSuccess)
+                .orElse(false);
+
+        if (isBot) {
+            return new ModelAndView("register");
+        }
+
         userService.register(userRegisterDto);
-        ra.addFlashAttribute("message", "Successful registration! A verification email has been sent to your email address.");
         return new ModelAndView("redirect:/success-registration");
     }
 
@@ -71,12 +85,14 @@ public class UserController {
 
         return modelAndView;
     }
+
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/admin/delete-user/{username}")
     public ModelAndView deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);
         return new ModelAndView("redirect:/admin/menage-users");
     }
+
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PatchMapping("/admin/update-user/{username}")
     public ModelAndView updateUser(@PathVariable("username") String username) {

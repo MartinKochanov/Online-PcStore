@@ -25,8 +25,8 @@ public class SecurityConfig {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/", "/login", "/register", "/login-error", "/admin/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/activation", "/activation/**", "/admin/menage-products").permitAll()
-                                .requestMatchers("/products/search/**", "/products/details/**","/products/search-product/**","/products/search/all**").permitAll()
-                                .requestMatchers("/success-registration").permitAll()
+                                .requestMatchers("/products/search/**","/products/search-product/**","/products/search/all**").permitAll()
+                                .requestMatchers("/success-registration", "/contact-us").permitAll()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(

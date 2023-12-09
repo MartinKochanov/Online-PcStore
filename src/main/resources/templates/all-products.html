@@ -7,8 +7,8 @@
 <h1 th:if="${products.getContent().isEmpty()}" class="mt-5 text-light text-center">No products found!</h1>
 
 <div class="col container-fluid mt-4">
-    <div class="row mt-5">
-        <div th:each="product : ${products.getContent()}" class=" col-6 col-xl-3 col-lg-4 col-md-5 col-sm-6 mt-5">
+    <ul class="row mt-5 bg-transparent">
+        <li th:each="product : ${products.getContent()}" class="list-group-item bg-transparent">
             <a class="text-decoration-none" th:href="@{/products/details/{uuid}(uuid = ${product.uuid})}">
                     <div class="card mx-4 bg-transparent border-5 cardGlow ">
                         <div class="card-header position-relative border-0">
@@ -23,12 +23,11 @@
                             <li class="border-0 list-group-item bg-transparent text-uppercase text-light text-end fs-2>"
                                 th:text="${product.price} + '&euro;'">
                             </li>
-
                         </ul>
                     </div>
             </a>
-    </div>
-</div>
+    </li>
+</ul>
 </div>
 <div class="container mt-5 text-center bg-transparent">
     <nav aria-label="Page navigation" class="bg-transparent">

@@ -19,4 +19,5 @@ public enum ManufacturerEnum {
     MSI,
     LOGITECH,
     ARCTIC,
+    STEELSERIES
 }

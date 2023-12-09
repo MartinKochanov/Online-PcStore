@@ -15,9 +15,15 @@
             <div class="d-inline-block col-4 fs-1 text-light text-end" th:text="Price"></div>
             <div class="d-inline-block col-4 fs-1 text-light text-end pe-5 mb-4"
                  th:text="${product.price} + '&euro;'"></div>
-            <div class="fs-1 text-success text-center mt-4" th:text="'In Stock' + '&#10004;'"></div>
+            <div class="fs-1 text-success text-center mt-4 " th:text="'In Stock' + '&#10004;'"></div>
+            <div class="mt-5 mb-2 text-center">
+                <a href="https://www.alternate.nl/">
+                    <div class="btn fs-4  text-center text-light borderGlow" th:text="'WHERE TO BUY'"></div>
+                </a>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <div class="mt-5 col-12 text-light text-center fs-1" th:text="'Description'"></div>
         <div th:text="${product.description}" class="col-12 mt-5 bg-transparent text-light fs-5 border-5">

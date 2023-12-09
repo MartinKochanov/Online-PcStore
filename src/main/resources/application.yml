@@ -14,7 +14,7 @@ spring:
       ddl-auto: update
   sql:
     init:
-      mode: always
+      mode: never
   thymeleaf: # Thymeleaf
     cache: false
     mode: HTML, CSS
@@ -22,14 +22,14 @@ spring:
     prefix: file:src/main/resources/templates/
   mvc:
     hiddenmethod:
-       filter:
-         enabled: true
+      filter:
+        enabled: true
 
 mail:
   host: smtp.gmail.com
   port: 587
   username: martin.kochanov002@gmail.com
-  password: pzrmeuxphyzwqamr
+  password: ${MAIL_PASSWORD}
   properties:
     mail:
       transport:
@@ -42,3 +42,7 @@ server:
   error:
     whitelabel:
       enabled: true
+
+google.recaptcha:
+  key: ${RECAPTCHA_SITE_KEY:test}
+  secret: ${RECAPTCHA_SITE_SECRET:test}

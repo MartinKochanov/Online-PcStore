@@ -63,17 +63,19 @@ public class ProductController {
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/admin/menage-products")
-    public ModelAndView menageProducts(@PageableDefault(size = 3, sort = "uuid") Pageable pageable,
+    public ModelAndView menageProducts(@PageableDefault(size = 20, sort = "uuid") Pageable pageable,
                                        @Param("keyword") String keyword) {
         ModelAndView modelAndView = new ModelAndView("menage-products");
         modelAndView.addObject("products", productService.allProducts(pageable, keyword));
         modelAndView.addObject("currentPage", pageable.getPageNumber());
+        modelAndView.addObject("keyword",keyword);
+
 
         return modelAndView;
     }
 
     @GetMapping("/products/search/{product}")
-    public ModelAndView search(@PageableDefault(size = 8, sort = "uuid") Pageable pageable,
+    public ModelAndView search(@PageableDefault(size = 20, sort = "uuid") Pageable pageable,
                                @PathVariable("product") String keyword) {
         ModelAndView modelAndView = new ModelAndView("all-products");
         modelAndView.addObject("products", productService.allProducts(pageable, keyword));
@@ -84,7 +86,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/search-product")
-    public ModelAndView searchCertainProduct(@PageableDefault(size = 8, sort = "uuid") Pageable pageable,
+    public ModelAndView searchCertainProduct(@PageableDefault(size = 20, sort = "uuid") Pageable pageable,
                                @Param("product") String keyword) {
         ModelAndView modelAndView = new ModelAndView("all-products");
         modelAndView.addObject("products", productService.allProducts(pageable, keyword));

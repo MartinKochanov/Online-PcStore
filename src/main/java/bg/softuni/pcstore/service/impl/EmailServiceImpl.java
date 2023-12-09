@@ -44,6 +44,25 @@ public class EmailServiceImpl implements EmailService {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void sendContactUsEmail(String userEmail, String fullName, String text) {
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+
+        try {
+            mimeMessageHelper.setTo(myEmail);
+            mimeMessageHelper.setFrom(userEmail);
+            mimeMessageHelper.setReplyTo(userEmail);
+            mimeMessageHelper.setSubject("Contact form question!");
+            mimeMessageHelper.setText(generateContactUsEmailBody(fullName, text), true);
+
+            javaMailSender.send(mimeMessageHelper.getMimeMessage());
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private String generateRegistrationEmailBody(String fullName, String activationToken) {
 
@@ -52,5 +71,13 @@ public class EmailServiceImpl implements EmailService {
         context.setVariable("token", activationToken);
 
         return templateEngine.process("email/registration-email", context);
+    }
+    private String generateContactUsEmailBody(String fullName, String text) {
+
+        Context context = new Context();
+        context.setVariable("fullName", fullName);
+        context.setVariable("text", text);
+
+        return templateEngine.process("email/contact", context);
     }
 }

@@ -15,12 +15,13 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center text-light mb-5">Create an account</h2>
 
-                            <form th:action="@{/register}" th:method="POST"
-                            th:object="${userRegisterDto}">
+                            <form id="register-form"
+                                    th:action="@{/register}" th:method="POST"
+                                  th:object="${userRegisterDto}">
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
-                                    th:if="${#fields.hasErrors('username')}"
-                                    th:errors="*{username}"></small>
+                                           th:if="${#fields.hasErrors('username')}"
+                                           th:errors="*{username}"></small>
                                     <input type="text"
                                            id="username"
                                            th:field="*{username}"
@@ -57,7 +58,7 @@
                                            id="email"
                                            th:field="*{email}"
                                            th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light" />
+                                           class="form-control form-control-lg bg-transparent text-light"/>
                                     <label class="form-label text-light" for="email">Email*</label>
                                 </div>
                                 <div class="form-outline mb-4">
@@ -68,8 +69,9 @@
                                            id="password"
                                            th:field="*{password}"
                                            th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light" />
-                                    <label class="form-label text-light" for="password">Password*</label>
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="password">Password*</label><span class=""><i
+                                        id="toggler" class="fa-solid fa-eye-slash text-light fs-5 mt-1 ms-3"></i> </span>
                                 </div>
                                 <div class="form-outline mb-4">
                                     <small class="form-label text-danger"
@@ -79,24 +81,36 @@
                                            id="confirmPassword"
                                            th:field="*{confirmPassword}"
                                            th:errorClass="bg-danger"
-                                           class="form-control form-control-lg bg-transparent text-light" />
-                                    <label class="form-label text-light" for="confirmPassword">Confirm your password*</label>
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light" for="confirmPassword">Confirm your
+                                        password*</label>
                                 </div>
                                 <div class="d-flex justify-content-center ">
-                                    <button type="submit"
-                                            class="btn btn-block btn-lg text-light registerGlowButton">Register</button>
+                                    <button class="g-recaptcha btn btn-block btn-lg text-light registerGlowButton"
+                                            th:attr="data-sitekey=${@recaptchaConfig.key}"
+                                            data-callback='onSubmit'
+                                            data-action='submit'>Register</button>
                                 </div>
-                                <p class="text-center text-light mt-1 mb-0">Already have an account? <a th:href="@{/login}"
-                                                                                                        class="fw-bold text-light"><u>Login here</u></a></p>
-
+                                <p class="text-center text-light mt-1 mb-0">Already have an account? <a
+                                        th:href="@{/login}"
+                                        class="fw-bold text-light"><u>Login here</u></a></p>
                             </form>
-
                         </div>
+                        <!-- ReCaptcha -->
+                        <script src="https://www.google.com/recaptcha/api.js"></script>
+                        <script>
+                            function onSubmit(token) {
+                                document.getElementById("register-form").submit();
+                            }
+                        </script>
+                        <!-- ReCaptcha -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
