@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/PcStore?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:}
+    password: ${MYSQL_PASSWORD:topsecret}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     defer-datasource-initialization: true
@@ -22,8 +22,8 @@ spring:
     prefix: file:src/main/resources/templates/
   mvc:
     hiddenmethod:
-      filter:
-        enabled: true
+       filter:
+         enabled: true
 
 mail:
   host: smtp.gmail.com

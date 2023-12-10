@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+<nav th:replace="~{fragments/navbar}"></nav>
+
+<section class="vh-100">
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card bg-transparent registerGlow">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center text-light mb-5">Change Username</h2>
+                            <p th:if="${badCredentials}" class="errors alert alert-danger text-center">
+                                Invalid username or password.
+                            </p>
+
+                            <form th:action="@{/edit-username}" th:method="PATCH"
+                                  th:object="${editUsernameDTO}">
+
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('newUsername')}"
+                                           th:errors="*{newUsername}"></small>
+                                    <input type="text"
+                                           th:field="*{newUsername}"
+                                           th:errorClass="bg-danger"
+                                           th:value="*{newUsername}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">New Username</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('password')}"
+                                           th:errors="*{password}"></small>
+                                    <input type="password"
+                                           th:field="*{password}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Password</label><span class=""><i
+                                        id="toggler" class="fa-solid fa-eye-slash text-light fs-5 mt-1 ms-3"></i> </span>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <small class="form-label text-danger"
+                                           th:if="${#fields.hasErrors('confirmPassword')}"
+                                           th:errors="*{confirmPassword}"></small>
+                                    <input type="password"
+                                           th:field="*{confirmPassword}"
+                                           class="form-control form-control-lg bg-transparent text-light"/>
+                                    <label class="form-label text-light">Confirm Password</label>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" class="btn btn-block btn-lg text-light registerGlowButton"
+                                           id="loginBtn" value="Change Username"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

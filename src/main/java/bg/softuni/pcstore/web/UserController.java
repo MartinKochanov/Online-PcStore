@@ -1,5 +1,6 @@
 package bg.softuni.pcstore.web;
 
+import bg.softuni.pcstore.model.dto.ChangeUsernameDTO;
 import bg.softuni.pcstore.model.dto.ReCaptchaResponseDto;
 import bg.softuni.pcstore.model.dto.UserRegisterDto;
 import bg.softuni.pcstore.service.ReCaptchaService;
@@ -10,9 +11,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -59,16 +63,13 @@ public class UserController {
 
     @GetMapping("/success-registration")
     public ModelAndView successRegistration() {
-        return new ModelAndView("/success-registration");
+        return new ModelAndView("success-registration");
     }
 
     @GetMapping("/activation")
     public ModelAndView activateAccount(@RequestParam("token") String token) {
         ModelAndView modelAndView = new ModelAndView("/activation");
         boolean activated = userService.activateAccount(token);
-        if (!activated) {
-            modelAndView.addObject("invalidToken", false);
-        }
         modelAndView.addObject("validToken", true);
         return modelAndView;
     }
@@ -98,6 +99,32 @@ public class UserController {
     public ModelAndView updateUser(@PathVariable("username") String username) {
         userService.makeAdmin(username);
         return new ModelAndView("redirect:/admin/menage-users");
+    }
+
+    @GetMapping("/edit-username")
+    public ModelAndView editUsername(@ModelAttribute("editUsernameDTO") ChangeUsernameDTO changeUsernameDTO) {
+        return new ModelAndView("edit-username");
+    }
+
+
+    @PatchMapping("/edit-username")
+    public ModelAndView doEditUsername(@Valid @ModelAttribute("editUsernameDTO") ChangeUsernameDTO changeUsernameDTO,
+                                       BindingResult bindingResult, Principal principal) {
+
+        ModelAndView modelAndView = new ModelAndView("edit-username");
+        String username = principal.getName();
+
+        if (bindingResult.hasErrors()) {
+            return modelAndView;
+        }
+        boolean changed = userService.changeUsername(changeUsernameDTO, username);
+
+        if (!changed) {
+            modelAndView.addObject("badCredentials", true);
+            return modelAndView;
+        }
+
+        return new ModelAndView("redirect:/");
     }
 
 

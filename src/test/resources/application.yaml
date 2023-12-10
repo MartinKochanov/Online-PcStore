@@ -1,0 +1,43 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: never
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML, CSS
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: martin.kochanov002@gmail.com
+  password: topsecret
+  properties:
+    mail:
+      transport:
+        protocol: smtp
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+server:
+  error:
+    whitelabel:
+      enabled: true
+
+google.recaptcha:
+  key: test
+  secret: test

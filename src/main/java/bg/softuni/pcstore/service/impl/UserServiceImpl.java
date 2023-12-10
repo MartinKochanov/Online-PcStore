@@ -3,6 +3,7 @@ package bg.softuni.pcstore.service.impl;
 import bg.softuni.pcstore.events.UserRegistrationEvent;
 import bg.softuni.pcstore.exception.ExpiredLinkException;
 import bg.softuni.pcstore.exception.ObjectNotFoundException;
+import bg.softuni.pcstore.model.dto.ChangeUsernameDTO;
 import bg.softuni.pcstore.model.dto.UserRegisterDto;
 import bg.softuni.pcstore.model.dto.UserShortSummaryDTO;
 import bg.softuni.pcstore.model.entity.RoleEntity;
@@ -47,17 +48,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean changeUsername(ChangeUsernameDTO changeUsernameDTO, String username) {
+        Optional<UserEntity> byUsername = userRepository.findByUsername(username);
+        if (byUsername.isEmpty()) {
+           return false;
+        }
+        if (!passwordEncoder.matches(changeUsernameDTO.getPassword(), byUsername.get().getPassword())) {
+            return false;
+        }
+
+        UserEntity user = byUsername.get();
+        user.setUsername(changeUsernameDTO.getNewUsername());
+        userRepository.save(user);
+
+        return true;
+    }
+
+    @Override
     public void register(UserRegisterDto userRegisterDto) {
 
         UserEntity user = mapper.map(userRegisterDto, UserEntity.class);
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
         RoleEntity userRole = roleRepository.findByRoleName(RoleNameEnum.USER);
-        if (userRepository.count() <= 0) {
-            RoleEntity admin = roleRepository.findByRoleName(RoleNameEnum.ADMIN);
-            user.setRole(admin);
-        } else {
-            user.setRole(userRole);
-        }
+        user.setRole(userRole);
         userRepository.save(user);
 
         applicationEventPublisher.publishEvent(new UserRegistrationEvent(
@@ -71,7 +84,7 @@ public class UserServiceImpl implements UserService {
     public boolean activateAccount(String token) {
 
         if (token == null || token.isEmpty() || verificationTokenRepository.findByToken(token) == null) {
-        throw new ObjectNotFoundException("Token not found!");
+            throw new ObjectNotFoundException("Token not found!");
         }
 
 
