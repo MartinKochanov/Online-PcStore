@@ -5,7 +5,7 @@
 <header th:replace="~{fragments/navbar}"></header>
 <h1 class="text-light text-center pb-3">Available products</h1>
 
-<form class="text-center w-100" th:action="@{/admin/menage-products}">Search:
+<form  id="userForm" class="text-center w-100" th:action="@{/admin/menage-products}">Search:
     <input class="form-control-lg form-control-lg bg-transparent text-light border-light w-50" type="text"
            th:value="${keyword}" id="keyword" name="keyword"/>&nbsp;
     <input class="btn-dark text-light btn-lg" type="submit" value="Search"/> &nbsp;
